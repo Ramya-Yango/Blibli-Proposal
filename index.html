@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quick Commerce Enablement — Yango Tech × Blibli</title>
+<link rel="preload" as="font" href="https://yastatic.net/s3/distribution/lpc/fonts/YangoHeadline/YangoHeadline.woff2" crossorigin>
+<link rel="preload" as="font" href="https://yastatic.net/s3/distribution/lpc/fonts/YangoGroupText/YangoGroupText-Regular.woff2" crossorigin>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23FF1A1A' width='100' height='100' rx='20'/></svg>">
+<style>
+@font-face{font-family:"Yango Headline";src:url("https://yastatic.net/s3/distribution/lpc/fonts/YangoHeadline/YangoHeadline.woff2") format("woff2");font-weight:900;font-display:swap;}
+@font-face{font-family:"Yango Headline";src:url("https://yastatic.net/s3/distribution/lpc/fonts/YangoHeadline/YangoHeadline-Italic.woff2") format("woff2");font-weight:900;font-style:italic;font-display:swap;}
+@font-face{font-family:"Yango Group Text";src:url("https://yastatic.net/s3/distribution/lpc/fonts/YangoGroupText/YangoGroupText-Light.woff2") format("woff2");font-weight:300;font-display:swap;}
+@font-face{font-family:"Yango Group Text";src:url("https://yastatic.net/s3/distribution/lpc/fonts/YangoGroupText/YangoGroupText-Regular.woff2") format("woff2");font-weight:400;font-display:swap;}
+@font-face{font-family:"Yango Group Text";src:url("https://yastatic.net/s3/distribution/lpc/fonts/YangoGroupText/YangoGroupText-Medium.woff2") format("woff2");font-weight:500;font-display:swap;}
+@font-face{font-family:"Yango Group Text";src:url("https://yastatic.net/s3/distribution/lpc/fonts/YangoGroupText/YangoGroupText-Bold.woff2") format("woff2");font-weight:600;font-display:swap;}
+@font-face{font-family:"Yango Group Text";src:url("https://yastatic.net/s3/distribution/lpc/fonts/YangoGroupText/YangoGroupText-Black.woff2") format("woff2");font-weight:900;font-display:swap;}
+
+:root{
+  --red:#FF1A1A;--bg:#F5F5F5;--dark:#141414;--mid:#232323;--mid2:#2a2a2a;
+  --text:#141414;--muted:#7A7A7A;--on-dark:#F5F5F5;--border:rgba(196,196,196,1);
+  --input:rgb(226,226,226);
+  --fh:"Yango Headline",Helvetica,Arial,sans-serif;
+  --fb:"Yango Group Text",Helvetica,Arial,sans-serif;
+  --r-card:1.875rem;--r-pill:2rem;--r-btn:2rem;--r-input:1.25rem;
+  --t:0.2s ease-in-out;--ti:1.2s ease-in-out;
+  --pad:1.87rem;--max:116rem;
+}
+@media(max-width:1439px){:root{--pad:1.25rem;}}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{font-size:16px;-webkit-font-smoothing:antialiased;}
+body{font-family:var(--fb);font-weight:400;font-size:.875rem;line-height:1.5;color:var(--text);background:var(--bg);letter-spacing:.05em;font-variant-numeric:proportional-nums;}
+::selection{background:var(--red);color:#fff;}
+a{color:inherit;text-decoration:none;transition:var(--t);}
+img{max-width:100%;height:auto;display:block;}
+
+/* Layout */
+.w{width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--pad);}
+.sec{padding:6rem 0;}
+.sec-t{padding:3.5rem 0;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;}
+@media(max-width:1100px){.g4{grid-template-columns:1fr 1fr;}.g3{grid-template-columns:1fr 1fr;}}
+@media(max-width:768px){.g2,.g3,.g4{grid-template-columns:1fr;}.nav-links{display:none;}}
+
+/* Type */
+.h1{font-family:var(--fh);font-weight:900;font-size:clamp(2.6rem,5vw,5.2rem);line-height:87%;letter-spacing:calc(1em/50);text-transform:uppercase;}
+.h2{font-family:var(--fh);font-weight:900;font-size:clamp(1.8rem,3.5vw,3.4rem);line-height:90%;letter-spacing:calc(1em/50);text-transform:uppercase;}
+.h3{font-family:var(--fh);font-weight:900;font-size:clamp(1.3rem,2.5vw,2.4rem);line-height:90%;letter-spacing:calc(1em/50);text-transform:uppercase;}
+.h4{font-family:var(--fh);font-weight:900;font-size:clamp(1rem,1.8vw,1.6rem);line-height:92%;letter-spacing:calc(1em/50);text-transform:uppercase;}
+.lbl{font-family:var(--fb);font-weight:500;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;line-height:1.2;}
+.body{font-family:var(--fb);font-weight:400;font-size:.875rem;line-height:1.6;letter-spacing:.05em;}
+.body-lg{font-family:var(--fb);font-weight:400;font-size:1.05rem;line-height:1.6;letter-spacing:.04em;}
+.muted{color:var(--muted);}
+.red{color:var(--red);}
+
+/* Nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.2rem var(--pad);transition:background var(--t);}
+.nav::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.65) 0%,transparent 100%);pointer-events:none;z-index:-1;transition:var(--t);}
+.nav.scrolled::before{background:rgba(16,16,16,.97);backdrop-filter:blur(14px);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:var(--max);margin:0 auto;}
+.nav-logo img{height:27px;width:auto;filter:invert(1);}
+.nav-links{display:flex;align-items:center;gap:.25rem;list-style:none;}
+.nav-link{padding:.65rem .85rem;font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);transition:var(--t);}
+.nav-link:hover{color:#fff;}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:.9rem 1.9rem;border:none;border-radius:var(--r-btn);font-family:var(--fb);font-weight:500;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:var(--t);white-space:nowrap;}
+.btn-red{background:var(--red);color:#fff;}.btn-red:hover{background:var(--dark);}
+.btn-dark{background:var(--mid);color:var(--on-dark);}.btn-dark:hover{background:var(--red);}
+.btn-ghost{background:transparent;color:var(--text);border:1.5px solid var(--border);}.btn-ghost:hover{border-color:var(--red);color:var(--red);}
+.btn-gw{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.25);}.btn-gw:hover{border-color:#fff;}
+
+/* Hero */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;background:#000;color:var(--on-dark);overflow:hidden;padding-top:6rem;}
+.hero-bg{position:absolute;inset:0;z-index:0;
+  background:radial-gradient(ellipse at 12% 55%,rgba(255,26,26,.18) 0%,transparent 55%),
+  radial-gradient(ellipse at 80% 20%,rgba(255,26,26,.09) 0%,transparent 50%),
+  radial-gradient(ellipse at 55% 88%,rgba(255,26,26,.06) 0%,transparent 45%),#000;}
+.hero-grid{position:absolute;inset:0;z-index:0;opacity:.032;
+  background-image:linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px);
+  background-size:64px 64px;}
+.hero-cnt{position:relative;z-index:1;width:100%;}
+
+/* Cards */
+.card{background:#fff;border-radius:var(--r-card);overflow:hidden;}
+.cp{padding:2.5rem;}
+.dk-card{background:var(--mid);border-radius:var(--r-card);padding:2.5rem;}
+.dk2{background:#1c1c1c;border-radius:var(--r-card);padding:2.5rem;}
+
+/* Pill */
+.pill{display:inline-block;padding:.4rem 1rem;border-radius:var(--r-pill);font-size:.65rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;}
+.pill-r{background:rgba(255,26,26,.1);color:var(--red);}
+.pill-dk{background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);}
+.pill-g{background:rgba(52,199,89,.12);color:#34c759;}
+.pill-y{background:rgba(255,214,10,.15);color:#b8860b;}
+
+/* Stats */
+.sn{font-family:var(--fh);font-weight:900;font-size:clamp(2rem,4vw,3.2rem);line-height:1;letter-spacing:calc(1em/50);color:var(--red);}
+.sl{font-family:var(--fb);font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:.6rem;}
+
+/* Section label */
+.slbl{display:flex;align-items:center;gap:1.2rem;margin-bottom:3rem;}
+.slbl::after{content:"";flex:1;height:1px;background:var(--border);}
+.slbl-dk{display:flex;align-items:center;gap:1.2rem;margin-bottom:3rem;}
+.slbl-dk::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.08);}
+
+/* Hero badge */
+.hbadge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);border-radius:2rem;padding:.45rem 1rem;margin-bottom:2rem;}
+.pulse{width:6px;height:6px;background:var(--red);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+
+/* Timeline */
+.tli{display:flex;gap:1.75rem;padding:1.75rem 0;border-bottom:1px solid var(--border);}
+.tli:last-child{border-bottom:none;}
+.tln{flex-shrink:0;width:2.75rem;height:2.75rem;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:900;font-size:1rem;margin-top:.1rem;}
+.tln-o{background:var(--bg);color:var(--red);border:2px solid var(--border);}
+
+/* Bar */
+.bar-wrap{margin-top:.85rem;}
+.bar-lbls{display:flex;justify-content:space-between;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem;}
+.bar{height:6px;border-radius:3px;background:#ececec;overflow:hidden;}
+.bar-fill{height:100%;border-radius:3px;background:var(--red);transition:width .9s ease-out;}
+
+/* Option cards */
+.opt-card{background:#fff;border-radius:var(--r-card);padding:2.5rem;border:2px solid transparent;transition:border-color var(--t);cursor:default;position:relative;}
+.opt-card.sel{border-color:var(--red);}
+.opt-tag{position:absolute;top:2rem;right:2rem;background:var(--red);color:#fff;font-family:var(--fb);font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:.4rem .85rem;border-radius:1.25rem;}
+.opt-price{font-family:var(--fh);font-weight:900;font-size:clamp(2.2rem,4vw,3.2rem);line-height:1;letter-spacing:calc(1em/50);color:var(--text);margin:1rem 0 .4rem;}
+.opt-price sup{font-size:.45em;vertical-align:top;margin-top:.3em;}
+.chk-row{display:flex;gap:.75rem;align-items:flex-start;padding:.65rem 0;border-bottom:1px solid var(--bg);}
+.chk-row:last-child{border-bottom:none;}
+.chk-ico{width:20px;height:20px;border-radius:50%;background:rgba(255,26,26,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem;}
+.chk-ico svg{width:10px;height:10px;}
+.cx-ico{width:20px;height:20px;border-radius:50%;background:#f0f0f0;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem;}
+
+/* Mockup */
+.mk{background:#1a1a1a;border-radius:1.25rem;overflow:hidden;font-family:var(--fb);font-size:.78rem;}
+.mk-bar{background:#2c2c2c;padding:.7rem 1rem;display:flex;align-items:center;gap:.45rem;}
+.mk-dot{width:10px;height:10px;border-radius:50%;}
+.mk-ttl{font-size:.58rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-left:.4rem;}
+.mk-body{padding:1.25rem;color:var(--on-dark);}
+.mk-kpi{display:grid;gap:.6rem;margin-bottom:1rem;}
+.mk-ki{background:rgba(255,255,255,.05);border-radius:.75rem;padding:.75rem;}
+.mk-kv{font-family:var(--fh);font-size:1.25rem;font-weight:900;letter-spacing:calc(1em/50);color:#fff;}
+.mk-kl{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:.15rem;}
+.mk-row{display:flex;justify-content:space-between;align-items:center;padding:.55rem 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.7rem;}
+.mk-row:last-child{border-bottom:none;}
+.bdg{padding:.2rem .55rem;border-radius:1rem;font-size:.58rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;}
+.bg{background:rgba(52,199,89,.14);color:#34c759;}
+.bo{background:rgba(255,149,0,.14);color:#ff9500;}
+.br{background:rgba(255,59,48,.14);color:#ff3b30;}
+.bb{background:rgba(0,122,255,.14);color:#007aff;}
+.mk-slbl{font-size:.58rem;color:rgba(255,255,255,.25);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem;margin-top:.4rem;}
+.mk-tab-row{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+.mktab{padding:.45rem 1rem;font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:1.5rem;color:rgba(255,255,255,.4);cursor:pointer;transition:var(--t);}
+.mktab:hover{color:rgba(255,255,255,.7);}
+.mktab.on{background:rgba(255,26,26,.12);border-color:rgba(255,26,26,.3);color:var(--red);}
+
+/* Workflow */
+.wf-row{display:flex;align-items:flex-start;gap:0;overflow-x:auto;padding-bottom:.5rem;}
+.wf-step{display:flex;flex-direction:column;align-items:center;text-align:center;width:110px;flex-shrink:0;}
+.wf-circle{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-bottom:.9rem;}
+.wf-arr{display:flex;align-items:center;padding-top:1.5rem;color:rgba(255,255,255,.2);flex-shrink:0;padding:0 .3rem;padding-top:1.4rem;font-size:.8rem;}
+
+/* Quote */
+.qb{border-left:3px solid var(--red);padding-left:1.4rem;margin:1.5rem 0;}
+.qt{font-size:.95rem;font-style:italic;line-height:1.65;letter-spacing:.03em;color:var(--muted);}
+
+/* Compare table */
+.ctbl{width:100%;border-collapse:collapse;}
+.ctbl th,.ctbl td{padding:.85rem 1.2rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:middle;}
+.ctbl th{font-family:var(--fb);font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:#fafafa;}
+.ctbl td{font-size:.78rem;letter-spacing:.04em;}
+.ctbl tr:last-child td{border-bottom:none;}
+.ctbl .hl{color:var(--red);font-weight:600;}
+
+/* Callout */
+.cbo{background:#fff;border-radius:var(--r-card);padding:2rem 2.5rem;border-left:4px solid var(--red);}
+.cbod{background:var(--mid);border-radius:var(--r-card);padding:2rem 2.5rem;border-left:4px solid var(--red);}
+
+/* Input */
+.inp{width:100%;padding:1.1rem 1.4rem;background:var(--input);border:none;border-radius:var(--r-input);font-family:var(--fb);font-size:.875rem;letter-spacing:.04em;color:var(--text);outline:none;transition:var(--t);}
+.inp::placeholder{color:var(--muted);}
+.inp:focus{outline:2px solid var(--red);outline-offset:-2px;}
+textarea.inp{resize:vertical;min-height:7rem;}
+
+/* Toggle */
+.tog-row{display:flex;gap:.75rem;margin-bottom:2rem;background:#fff;border-radius:var(--r-pill);padding:.35rem;width:fit-content;}
+.tog-btn{padding:.65rem 1.75rem;border-radius:var(--r-pill);font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border:none;background:transparent;color:var(--muted);transition:var(--t);}
+.tog-btn.on{background:var(--red);color:#fff;}
+
+/* P&L path card */
+.pl-card{background:#fff;border-radius:var(--r-card);padding:2rem;position:relative;overflow:hidden;}
+.pl-year{font-family:var(--fh);font-weight:900;font-size:.875rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem;}
+.pl-val{font-family:var(--fh);font-weight:900;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1;letter-spacing:calc(1em/50);margin-bottom:.35rem;}
+.pl-bar{height:4px;border-radius:2px;margin:1rem 0 .75rem;}
+.pl-metric{display:flex;justify-content:space-between;font-size:.7rem;letter-spacing:.04em;padding:.35rem 0;border-bottom:1px solid var(--bg);}
+.pl-metric:last-child{border-bottom:none;}
+.pl-accent{position:absolute;top:0;left:0;width:4px;height:100%;background:var(--red);}
+
+/* Case study card */
+.cs-card{background:#fff;border-radius:var(--r-card);padding:2.5rem;border-top:4px solid var(--red);}
+.cs-stat{font-family:var(--fh);font-weight:900;font-size:clamp(1.8rem,3.5vw,2.8rem);line-height:1;letter-spacing:calc(1em/50);color:var(--red);margin:1rem 0 .25rem;}
+.cs-lbl{font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+
+/* Fade in */
+.fi{opacity:0;transform:translateY(1.75rem);transition:opacity .65s ease-out,transform .65s ease-out;}
+.fi.vis{opacity:1;transform:translateY(0);}
+
+/* Footer */
+.footer{background:var(--dark);color:var(--on-dark);padding:4rem 0 2rem;}
+.footer-bot{display:flex;justify-content:space-between;align-items:center;margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.08);flex-wrap:wrap;gap:1rem;}
+
+/* Speciality row */
+.spec-item{display:flex;gap:1.5rem;align-items:flex-start;padding:2rem 0;border-bottom:1px solid var(--border);}
+.spec-item:last-child{border-bottom:none;}
+.spec-num{font-family:var(--fh);font-weight:900;font-size:3rem;line-height:1;letter-spacing:calc(1em/50);color:rgba(255,26,26,.15);flex-shrink:0;width:4rem;}
+
+/* Revenue chart bars */
+.rev-chart{display:flex;align-items:flex-end;gap:.35rem;height:80px;}
+.rev-bar{border-radius:3px 3px 0 0;background:var(--red);flex:1;transition:height .9s ease-out;}
+.rev-bar.dim{background:rgba(255,26,26,.25);}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo"><img src="https://avatars.mds.yandex.net/get-lpc/14837328/21641dca-3288-4eeb-8d99-81f8cb31a763/orig" alt="Yango Tech" width="176" height="30"></a>
+    <ul class="nav-links">
+      <li><a class="nav-link" href="#why">Why Yango Tech</a></li>
+      <li><a class="nav-link" href="#path">Path to Profitability</a></li>
+      <li><a class="nav-link" href="#options">Engagement Models</a></li>
+      <li><a class="nav-link" href="#workflow">How It Works</a></li>
+      <li><a class="nav-link" href="#cases">Case Studies</a></li>
+      <li><a class="btn btn-red" href="#next" style="margin-left:.5rem;">Get the Proposal</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-cnt w">
+    <div style="max-width:70rem;">
+      <div class="hbadge fi">
+        <div class="pulse"></div>
+        <span class="lbl" style="color:rgba(255,255,255,.6);font-size:.62rem;">Quick Commerce Enablement · Indonesia · 2026</span>
+      </div>
+      <h1 class="h1 fi" style="color:#fff;margin-bottom:1.5rem;transition-delay:.08s;">
+        Building a profitable<br>quick-commerce business<br><span style="color:var(--red);">with world-class tech<br>and expertise</span>
+      </h1>
+      <p class="body-lg fi" style="color:rgba(255,255,255,.55);max-width:50rem;margin-bottom:1.5rem;transition-delay:.15s;">
+        Blibli's new darkstore entity is targeting 5 stores, 200 orders/day, and EBITDA break-even within 18 months. The gap between ambition and execution is operational and technological. Yango Tech closes both, faster than any alternative.
+      </p>
+      <!-- Financial aspiration strip -->
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:1.25rem;padding:1.25rem 1.75rem;margin-bottom:2.5rem;display:flex;gap:2.5rem;flex-wrap:wrap;" class="fi" style="transition-delay:.2s;">
+        <div>
+          <div class="lbl" style="color:rgba(255,255,255,.35);margin-bottom:.25rem;">Y1 Target</div>
+          <div style="font-family:var(--fh);font-weight:900;font-size:1.2rem;color:#fff;letter-spacing:calc(1em/50);">5 Stores · 200 orders/day</div>
+        </div>
+        <div style="width:1px;background:rgba(255,255,255,.1);"></div>
+        <div>
+          <div class="lbl" style="color:rgba(255,255,255,.35);margin-bottom:.25rem;">18-Month Target</div>
+          <div style="font-family:var(--fh);font-weight:900;font-size:1.2rem;color:#fff;letter-spacing:calc(1em/50);">EBITDA Break-even</div>
+        </div>
+        <div style="width:1px;background:rgba(255,255,255,.1);"></div>
+        <div>
+          <div class="lbl" style="color:rgba(255,255,255,.35);margin-bottom:.25rem;">Y5 Vision</div>
+          <div style="font-family:var(--fh);font-weight:900;font-size:1.2rem;color:#fff;letter-spacing:calc(1em/50);">526 orders/store/day · 18% EBITDA</div>
+        </div>
+        <div style="width:1px;background:rgba(255,255,255,.1);"></div>
+        <div>
+          <div class="lbl" style="color:rgba(255,255,255,.35);margin-bottom:.25rem;">Total Y5 GMV</div>
+          <div style="font-family:var(--fh);font-weight:900;font-size:1.2rem;color:var(--red);letter-spacing:calc(1em/50);">Rp 624B+</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;" class="fi" style="transition-delay:.28s;">
+        <a href="#path" class="btn btn-red" style="padding:1.1rem 2.4rem;">See the Path to Profitability</a>
+        <a href="#options" class="btn btn-gw" style="padding:1.1rem 2.4rem;">Explore Engagement Models</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RED BANNER -->
+<section style="background:var(--red);padding:2.75rem 0;">
+  <div class="w">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
+      <div>
+        <div class="lbl" style="color:rgba(255,255,255,.65);margin-bottom:.6rem;">What this partnership delivers</div>
+        <p style="font-family:var(--fh);font-weight:900;font-size:clamp(1.05rem,2vw,1.5rem);line-height:1.2;letter-spacing:calc(1em/50);color:#fff;max-width:62rem;text-transform:uppercase;">
+          Yango Tech enables Blibli's q-commerce entity to launch on time, reach 200 orders/store/day, and achieve EBITDA break-even within 18 months — without the delays and risk of building technology in-house.
+        </p>
+      </div>
+      <a href="#next" class="btn" style="background:#fff;color:var(--red);flex-shrink:0;padding:1.1rem 2.5rem;">Schedule a Workshop</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY YANGO TECH -->
+<section class="sec" style="background:#fff;" id="why">
+  <div class="w">
+    <div class="slbl fi"><span class="lbl muted">01 — Why Yango Tech</span></div>
+    <div class="g2" style="gap:5rem;align-items:start;margin-bottom:4rem;">
+      <div class="fi">
+        <h2 class="h2" style="margin-bottom:1.5rem;">We didn't just build<br>darkstore software —<br>we built a <span style="color:var(--red);">$2B business</span><br>with it</h2>
+        <p class="body muted" style="margin-bottom:1.5rem;">Yango Tech's darkstore platform was born from running Yandex Lavka — one of the world's most operationally efficient quick-commerce businesses. Every feature, every KPI threshold, every SOP template comes from running 550+ live stores and managing 450,000 orders a day at EBITDA positive. This is not vendor software. It is the same stack, offered to partners who want to skip 5 years of operational learning.</p>
+        <p class="body muted">For Blibli, this means the technology embedded in the platform already knows what good looks like — and is calibrated to get your stores there from week one.</p>
+      </div>
+      <div class="fi" style="transition-delay:.12s;">
+        <div class="g2" style="gap:1rem;">
+          <div style="background:var(--bg);border-radius:var(--r-card);padding:2rem;border-top:3px solid var(--red);">
+            <div class="sn">600+</div>
+            <div class="sl">Active darkstores on the platform</div>
+          </div>
+          <div style="background:var(--bg);border-radius:var(--r-card);padding:2rem;border-top:3px solid transparent;">
+            <div class="sn">350K+</div>
+            <div class="sl">Daily deliveries managed</div>
+          </div>
+          <div style="background:var(--bg);border-radius:var(--r-card);padding:2rem;border-top:3px solid transparent;">
+            <div class="sn">$2B</div>
+            <div class="sl">Profitable darkstore business built</div>
+          </div>
+          <div style="background:var(--bg);border-radius:var(--r-card);padding:2rem;border-top:3px solid transparent;">
+            <div class="sn">14</div>
+            <div class="sl">Countries with successful implementations</div>
+          </div>
+        </div>
+        <div style="margin-top:1rem;background:var(--bg);border-radius:var(--r-card);padding:1.5rem;display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;">
+          <div style="text-align:center;">
+            <div style="font-family:var(--fh);font-weight:900;font-size:1.6rem;color:var(--red);">98%</div>
+            <div class="lbl muted" style="font-size:.6rem;">On-time deliveries</div>
+          </div>
+          <div style="width:1px;height:2.5rem;background:var(--border);"></div>
+          <div style="text-align:center;">
+            <div style="font-family:var(--fh);font-weight:900;font-size:1.6rem;color:var(--red);">~0%</div>
+            <div class="lbl muted" style="font-size:.6rem;">Out-of-stock orders</div>
+          </div>
+          <div style="width:1px;height:2.5rem;background:var(--border);"></div>
+          <div style="text-align:center;">
+            <div style="font-family:var(--fh);font-weight:900;font-size:1.6rem;color:var(--red);">3–4×</div>
+            <div class="lbl muted" style="font-size:.6rem;">Orders per user/month</div>
+          </div>
+          <div style="width:1px;height:2.5rem;background:var(--border);"></div>
+          <div style="text-align:center;">
+            <div style="font-family:var(--fh);font-weight:900;font-size:1.6rem;color:var(--red);">95%+</div>
+            <div class="lbl muted" style="font-size:.6rem;">On-shelf availability</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- What Yango specialises in -->
+    <div class="fi" style="margin-bottom:2rem;">
+      <h3 class="h3" style="max-width:40rem;margin-bottom:.5rem;">Three areas where Yango Tech creates measurable impact for Blibli</h3>
+    </div>
+    <div style="background:var(--bg);border-radius:var(--r-card);padding:2.5rem;" class="fi" style="transition-delay:.1s;">
+      <div class="spec-item">
+        <div class="spec-num">01</div>
+        <div>
+          <div class="h4" style="margin-bottom:.75rem;">Technology</div>
+          <p class="body muted" style="margin-bottom:1rem;">A complete, battle-tested darkstore tech stack — WMS with live inventory (3-second updates), ML-routed Picker App, shift planning, order analytics, and ERP integration support. Proven to reduce order assembly time by up to 50%, cut cancellations by 35%, and bring inventory accuracy to 99.5%. Not prototype software — the same stack managing 350K+ orders daily across 14 countries.</p>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap;">
+            <span class="pill pill-r">WMS</span>
+            <span class="pill pill-r">Picker App</span>
+            <span class="pill pill-r">Order Analytics</span>
+            <span class="pill pill-r">ERP Integration</span>
+            <span class="pill pill-r">Shift Planning</span>
+            <span class="pill pill-r">ML Routing</span>
+          </div>
+        </div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-num">02</div>
+        <div>
+          <div class="h4" style="margin-bottom:.75rem;">Launch &amp; Implementation</div>
+          <p class="body muted" style="margin-bottom:1rem;">Yango Tech co-designs the launch with Blibli — from darkstore layout and equipment checklist to shift structures and category frameworks. 30+ workshops covering physical and digital preparation. 100+ operational templates calibrated for Southeast Asian market conditions. 40+ hours of hands-on training for the operations team. The Yango Tech team is on-site for the launch of first stores.</p>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap;">
+            <span class="pill pill-r">Layout Design</span>
+            <span class="pill pill-r">40+ hrs Training</span>
+            <span class="pill pill-r">100+ Templates</span>
+            <span class="pill pill-r">On-site Launch</span>
+          </div>
+        </div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-num">03</div>
+        <div>
+          <div class="h4" style="margin-bottom:.75rem;">Continuous Operational Guidance to Reach Profitability</div>
+          <p class="body muted" style="margin-bottom:1rem;">The path to Blibli's 18-month EBITDA break-even runs through continuous operational improvement — not just technology. Yango Tech's operations experts visit stores, identify inefficiencies, benchmark performance against the global network, and drive the optimisation loops that compress CTE and grow order frequency. A dedicated Partner Happiness Manager owns the relationship and tracks KPIs monthly.</p>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap;">
+            <span class="pill pill-r">On-site visits</span>
+            <span class="pill pill-r">KPI benchmarking</span>
+            <span class="pill pill-r">Partner Manager</span>
+            <span class="pill pill-r">Growth playbooks</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PATH TO PROFITABILITY -->
+<section class="sec" style="background:var(--dark);color:var(--on-dark);" id="path">
+  <div class="w">
+    <div class="slbl-dk fi"><span class="lbl" style="color:rgba(255,255,255,.35);">02 — Path to Profitability</span></div>
+    <div class="fi" style="margin-bottom:1rem;">
+      <h2 class="h2" style="color:#fff;max-width:44rem;margin-bottom:1rem;">Blibli's financial model — year by year</h2>
+      <p class="body" style="color:rgba(255,255,255,.45);max-width:48rem;">Blibli's own projections show a clear trajectory: an investment phase in the first 12 months building the network, EBITDA break-even targeted at Month 18, and meaningful free cash flow from Year 4. Yango Tech's role is to ensure every operational lever that accelerates this curve is activated from day one.</p>
+    </div>
+
+    <!-- Y1–Y5 P&L cards -->
+    <div class="g4 fi" style="gap:1.25rem;margin-bottom:2rem;transition-delay:.1s;">
+      <!-- Y1 -->
+      <div class="pl-card">
+        <div class="pl-accent" style="background:rgba(255,26,26,.25);"></div>
+        <div class="pl-year">Year 1</div>
+        <div class="pl-val" style="color:var(--text);">5 Stores</div>
+        <div class="lbl muted" style="font-size:.6rem;margin-bottom:.75rem;">200 orders/store/day target</div>
+        <div class="pl-bar" style="background:#fee2e2;"><div style="width:46%;height:100%;border-radius:2px;background:#fca5a5;"></div></div>
+        <div class="pl-metric"><span class="body muted">GMV</span><span class="lbl">Rp 55.5B</span></div>
+        <div class="pl-metric"><span class="body muted">AoV</span><span class="lbl">Rp 180K</span></div>
+        <div class="pl-metric"><span class="body muted">EBITDA</span><span class="lbl" style="color:#ef4444;">–46%</span></div>
+        <div class="pl-metric"><span class="body muted">FCF</span><span class="lbl" style="color:#ef4444;">–Rp 25.9B</span></div>
+        <div style="margin-top:1rem;background:#fff5f5;border-radius:.75rem;padding:.75rem;font-size:.7rem;color:var(--muted);">Investment phase — building the foundation. Hitting 200 orders/day per store in Y1 is the critical milestone that sets the 18-month break-even trajectory.</div>
+      </div>
+      <!-- Y2 -->
+      <div class="pl-card" style="border:2px solid rgba(255,26,26,.2);">
+        <div class="pl-accent"></div>
+        <div style="position:absolute;top:1rem;right:1rem;"><span class="pill pill-r" style="font-size:.58rem;">18-month break-even target</span></div>
+        <div class="pl-year">Year 2 · Month 18</div>
+        <div class="pl-val" style="color:var(--red);">8 Stores</div>
+        <div class="lbl muted" style="font-size:.6rem;margin-bottom:.75rem;">246 orders/store/day avg</div>
+        <div class="pl-bar" style="background:#fee2e2;"><div style="width:12%;height:100%;border-radius:2px;background:#fca5a5;"></div></div>
+        <div class="pl-metric"><span class="body muted">GMV</span><span class="lbl">Rp 146.9B</span></div>
+        <div class="pl-metric"><span class="body muted">AoV</span><span class="lbl">Rp 189K</span></div>
+        <div class="pl-metric"><span class="body muted">EBITDA</span><span class="lbl" style="color:#f97316;">–12% → 0%</span></div>
+        <div class="pl-metric"><span class="body muted">FCF</span><span class="lbl" style="color:#ef4444;">–Rp 43.7B</span></div>
+        <div style="margin-top:1rem;background:#fff7f0;border-radius:.75rem;padding:.75rem;font-size:.7rem;color:var(--muted);">Break-even targeted at Month 18. With Yango Tech's operational layer compressing losses, EBITDA moves from –12% toward 0% through the year.</div>
+      </div>
+      <!-- Y3 -->
+      <div class="pl-card">
+        <div class="pl-accent" style="background:#16a34a;"></div>
+        <div class="pl-year">Year 3</div>
+        <div class="pl-val" style="color:#16a34a;">12 Stores</div>
+        <div class="lbl muted" style="font-size:.6rem;margin-bottom:.75rem;">290 orders/store/day avg</div>
+        <div class="pl-bar" style="background:#dcfce7;"><div style="width:7%;height:100%;border-radius:2px;background:#4ade80;"></div></div>
+        <div class="pl-metric"><span class="body muted">GMV</span><span class="lbl">Rp 284B</span></div>
+        <div class="pl-metric"><span class="body muted">AoV</span><span class="lbl">Rp 201K</span></div>
+        <div class="pl-metric"><span class="body muted">EBITDA</span><span class="lbl" style="color:#16a34a;">+7%</span></div>
+        <div class="pl-metric"><span class="body muted">FCF</span><span class="lbl" style="color:#f97316;">–Rp 26.9B</span></div>
+        <div style="margin-top:1rem;background:#f0fdf4;border-radius:.75rem;padding:.75rem;font-size:.7rem;color:var(--muted);">Past break-even and building. Full network at 12 stores. Platform for accelerating to FCF positive in Y4.</div>
+      </div>
+      <!-- Y4 -->
+      <div class="pl-card">
+        <div class="pl-accent" style="background:#16a34a;"></div>
+        <div class="pl-year">Year 4–5</div>
+        <div class="pl-val" style="color:#16a34a;">13 Stores</div>
+        <div class="lbl muted" style="font-size:.6rem;margin-bottom:.75rem;">415–526 orders/store/day</div>
+        <div class="pl-bar" style="background:#dcfce7;"><div style="width:75%;height:100%;border-radius:2px;background:#16a34a;"></div></div>
+        <div class="pl-metric"><span class="body muted">GMV Y4</span><span class="lbl">Rp 466.8B</span></div>
+        <div class="pl-metric"><span class="body muted">EBITDA Y4</span><span class="lbl" style="color:#16a34a;">+14%</span></div>
+        <div class="pl-metric"><span class="body muted">FCF Y4</span><span class="lbl" style="color:#16a34a;">+Rp 27.7B</span></div>
+        <div class="pl-metric"><span class="body muted">EBITDA Y5</span><span class="lbl" style="color:#16a34a;">+18%</span></div>
+        <div style="margin-top:1rem;background:#f0fdf4;border-radius:.75rem;padding:.75rem;font-size:.7rem;color:var(--muted);">Free cash flow positive. Full unit economics validated. Ready for network expansion.</div>
+      </div>
+    </div>
+
+    <!-- Callout: how YT accelerates this -->
+    <div class="cbod fi" style="transition-delay:.2s;">
+      <div class="lbl" style="color:var(--red);margin-bottom:.75rem;">How Yango Tech accelerates every stage of this curve</div>
+      <div class="g3" style="gap:2rem;">
+        <div>
+          <div class="lbl" style="color:rgba(255,255,255,.5);margin-bottom:.5rem;">Y1 — Hitting 200 orders/day, every store</div>
+          <p class="body" style="color:rgba(255,255,255,.55);">The WMS and Picker App reduce assembly time by 50% from Week 1, meaning stores reach 200 orders/day faster and with fewer cancellations. Higher early order frequency directly improves the customer retention rate — the single biggest driver of the Y2 GMV needed to hit the 18-month break-even.</p>
+        </div>
+        <div>
+          <div class="lbl" style="color:rgba(255,255,255,.5);margin-bottom:.5rem;">Months 12–18 — Closing in on break-even</div>
+          <p class="body" style="color:rgba(255,255,255,.55);">Inventory accuracy at 99.5% eliminates write-off losses. Picker KPI tracking reduces headcount waste. Courier handoff optimisation lowers CPO. These operational gains compound across the 8-store network — flattening the loss curve and pulling EBITDA toward zero at the 18-month mark.</p>
+        </div>
+        <div>
+          <div class="lbl" style="color:rgba(255,255,255,.5);margin-bottom:.5rem;">Y4+ — Scaling profitably</div>
+          <p class="body" style="color:rgba(255,255,255,.55);">The same tech stack that ran 1 store scales to 13 without incremental engineering cost. Geo-analytics from Yango Tech's data layer identifies the highest-density catchment areas for stores 6–13, improving GMV per location and driving the Y4 FCF inflection.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGEMENT OPTIONS -->
+<section class="sec" style="background:var(--bg);" id="options">
+  <div class="w">
+    <div class="slbl fi"><span class="lbl muted">03 — Engagement Models</span></div>
+    <div class="fi" style="margin-bottom:3.5rem;">
+      <h2 class="h2" style="max-width:44rem;margin-bottom:1rem;">Two models calibrated to<br>Blibli's growth stage</h2>
+      <p class="body muted" style="max-width:46rem;">Both options are designed to get Blibli's first darkstore live by Q3 2026 and set the operational foundation for EBITDA break-even at Month 18. The difference is the depth of Yango Tech's involvement — and the speed at which the operational improvement compresses the loss curve toward that target.</p>
+    </div>
+
+    <div class="g2" style="gap:1.5rem;align-items:start;">
+
+      <!-- OPTION 1 -->
+      <div class="opt-card fi" style="transition-delay:0;">
+        <span class="opt-tag" style="background:var(--mid);font-size:.62rem;">Option 01</span>
+        <div class="pill pill-r" style="margin-bottom:1.25rem;">Technology Enablement</div>
+        <div class="opt-price"><sup>$</sup>50,000</div>
+        <div class="lbl muted" style="margin-bottom:1.75rem;">Per year · 1-year commitment</div>
+        <div class="h4" style="margin-bottom:1rem;">What Blibli gets</div>
+        <div style="display:flex;flex-direction:column;gap:0;">
+          <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">Full WMS platform — 12 months</div><div class="body muted" style="font-size:.8rem;">Live inventory (3-sec updates), order management, analytics, and reporting across all stores. Scales without additional cost as stores 2–5 go live.</div></div></div>
+          <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">Picker App with ML routing</div><div class="body muted" style="font-size:.8rem;">Reduces assembly time by up to 50%, eliminates mis-picks, and enables KPI tracking per picker from day one.</div></div></div>
+          <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">ERP / Odoo integration (middleware build)</div><div class="body muted" style="font-size:.8rem;">Yango Tech builds the API bridge between Blibli's Odoo instance and the WMS. One-time setup, maintained by Yango Tech.</div></div></div>
+          <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">Remote onboarding — 40+ hour training program</div><div class="body muted" style="font-size:.8rem;">Structured training for Blibli's operations team: picking best practices, shift management, inventory handling, courier handoff.</div></div></div>
+          <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">100+ operational templates &amp; playbooks</div><div class="body muted" style="font-size:.8rem;">Dark store layout plan, equipment checklist, category structure templates, shift planning instruments — adapted for Indonesia.</div></div></div>
+          <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">Technical support (Severity A ≤1hr / B ≤4hrs)</div><div class="body muted" style="font-size:.8rem;">24/7 technical support with guaranteed SLAs. Critical business impact resolved within 1 hour.</div></div></div>
+          <div class="chk-row" style="border-bottom:none;"><div class="cx-ico"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 3l6 6M9 3l-6 6" stroke="#aaa" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><div class="body muted" style="font-weight:500;">On-site operational consulting visits</div><div class="body muted" style="font-size:.8rem;">Available as part of Option 2.</div></div></div>
+        </div>
+        <!-- Path to profitability note -->
+        <div style="margin-top:2rem;padding:1.5rem;background:var(--bg);border-radius:1rem;">
+          <div class="lbl" style="color:var(--red);margin-bottom:.5rem;">Path to Blibli's targets</div>
+          <p class="body muted" style="font-size:.8rem;">Option 1 gives Blibli the technology foundation to reach 200 orders/day in Y1 and 246 in Y2. The operational improvements compound through the WMS's live KPI tracking — but the pace toward the 18-month break-even depends on Blibli's internal team applying the playbooks consistently. Break-even at Month 18 is achievable with strong internal ops execution.</p>
+        </div>
+        <a href="#next" class="btn btn-ghost" style="margin-top:1.75rem;width:100%;justify-content:center;">Explore Option 01</a>
+      </div>
+
+      <!-- OPTION 2 -->
+      <div class="opt-card sel fi" style="transition-delay:.1s;">
+        <span class="opt-tag" style="font-size:.62rem;">Option 02 · Recommended</span>
+        <div class="pill pill-r" style="margin-bottom:1.25rem;">Full-Stack Enablement</div>
+        <div class="opt-price"><sup>$</sup>100,000</div>
+        <div class="lbl muted" style="margin-bottom:1.75rem;">Per year · includes on-ground deployment</div>
+        <div class="h4" style="margin-bottom:1rem;">Everything in Option 01, plus:</div>
+        <div style="display:flex;flex-direction:column;gap:0;">
+          <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">On-site operational visits — Jakarta darkstores</div><div class="body muted" style="font-size:.8rem;">Yango Tech operations experts physically present at Blibli's stores. Critical inefficiencies identified in the first session that typically take operator teams months to discover.</div></div></div>
+          <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">Warehouse SOP &amp; process design</div><div class="body muted" style="font-size:.8rem;">Full standard operating procedures: warehouse layout, zone design, receiving, expiry control, substitution flows, shift handover protocols.</div></div></div>
+          <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">Deployed operational experts (2–3 weeks per visit)</div><div class="body muted" style="font-size:.8rem;">Senior Yango Tech operations leads embedded on-site during the most critical operational windows — store launch, first scale-up, and multi-store rollout phases.</div></div></div>
+          <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">Geo-analytics for store location selection</div><div class="body muted" style="font-size:.8rem;">Yango Tech's geo-analytics capability (isochrone mapping, audience density analysis) helps Blibli select the highest-GMV catchment zones for stores 2–5 and beyond — directly impacting GMV per location.</div></div></div>
+          <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">Dedicated Partner Happiness Manager</div><div class="body muted" style="font-size:.8rem;">Single point of contact across technology and operations. Weekly KPI reviews during ramp, monthly at steady state. Accountable for Blibli's performance against the financial model.</div></div></div>
+          <div class="chk-row" style="border-bottom:none;"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">Continuous improvement loop &amp; quarterly reviews</div><div class="body muted" style="font-size:.8rem;">Post-visit recommendations benchmarked against Yango Tech's 600+ store global dataset. Operational gaps identified and closed before they impact the P&L.</div></div></div>
+        </div>
+        <!-- Path to profitability note -->
+        <div style="margin-top:2rem;padding:1.5rem;background:#fff5f5;border-radius:1rem;border:1px solid rgba(255,26,26,.12);">
+          <div class="lbl" style="color:var(--red);margin-bottom:.5rem;">Path to Blibli's targets — accelerated</div>
+          <p class="body muted" style="font-size:.8rem;">Option 2's on-site operational layer is the most direct route to the 18-month break-even target. Store visit patterns from comparable launches show CTE reductions of 35–44% within 4 weeks, cancellations dropping by 60%, and missing-item rates falling from ~4% to under 0.4%. Each improvement feeds directly into gross margin — compressing the loss curve and making Month 18 EBITDA break-even a managed outcome rather than an aspiration.</p>
+        </div>
+        <a href="#next" class="btn btn-red" style="margin-top:1.75rem;width:100%;justify-content:center;">Explore Option 02</a>
+      </div>
+    </div>
+
+    <!-- Compare table -->
+    <div class="fi" style="margin-top:2rem;transition-delay:.2s;">
+      <div class="card">
+        <div class="cp" style="padding-bottom:0;">
+          <table class="ctbl">
+            <thead><tr>
+              <th style="width:48%;">What Blibli gets</th>
+              <th style="width:26%;text-align:center;">Option 01<br><span style="font-size:.6rem;color:var(--muted);">Technology Enablement · $50K</span></th>
+              <th style="width:26%;text-align:center;background:#fff5f5;">Option 02<br><span style="font-size:.6rem;color:var(--red);">Full-Stack · $100K</span></th>
+            </tr></thead>
+            <tbody>
+              <tr><td class="body" style="font-weight:500;">WMS — live inventory (3-sec updates)</td><td style="text-align:center;">✓</td><td style="text-align:center;background:#fffafa;">✓</td></tr>
+              <tr><td class="body" style="font-weight:500;">Picker App with ML routing</td><td style="text-align:center;">✓</td><td style="text-align:center;background:#fffafa;">✓</td></tr>
+              <tr><td class="body" style="font-weight:500;">ERP / Odoo middleware integration</td><td style="text-align:center;">✓</td><td style="text-align:center;background:#fffafa;">✓</td></tr>
+              <tr><td class="body" style="font-weight:500;">40+ hr remote training program</td><td style="text-align:center;">✓</td><td style="text-align:center;background:#fffafa;">✓</td></tr>
+              <tr><td class="body" style="font-weight:500;">100+ operational templates (Indonesia)</td><td style="text-align:center;">✓</td><td style="text-align:center;background:#fffafa;">✓</td></tr>
+              <tr><td class="body" style="font-weight:500;">24/7 technical support (SLA guaranteed)</td><td style="text-align:center;">✓</td><td style="text-align:center;background:#fffafa;">✓</td></tr>
+              <tr><td class="body" style="font-weight:500;">On-site operational visits — Jakarta</td><td style="text-align:center;color:var(--muted);">—</td><td style="text-align:center;background:#fffafa;" class="hl">✓ Included</td></tr>
+              <tr><td class="body" style="font-weight:500;">Warehouse SOP &amp; process design</td><td style="text-align:center;color:var(--muted);">—</td><td style="text-align:center;background:#fffafa;" class="hl">✓ Included</td></tr>
+              <tr><td class="body" style="font-weight:500;">Deployed operations experts (2–3 wks)</td><td style="text-align:center;color:var(--muted);">—</td><td style="text-align:center;background:#fffafa;" class="hl">✓ Included</td></tr>
+              <tr><td class="body" style="font-weight:500;">Geo-analytics for store location selection</td><td style="text-align:center;color:var(--muted);">—</td><td style="text-align:center;background:#fffafa;" class="hl">✓ Included</td></tr>
+              <tr><td class="body" style="font-weight:500;">Dedicated Partner Happiness Manager</td><td style="text-align:center;color:var(--muted);">—</td><td style="text-align:center;background:#fffafa;" class="hl">✓ Included</td></tr>
+              <tr style="background:#fafafa;"><td class="body" style="font-weight:600;">Path to Month 18 EBITDA break-even</td><td style="text-align:center;font-weight:500;">With strong internal ops</td><td style="text-align:center;background:#fff0f0;font-weight:700;color:var(--red);">Active Yango Tech-driven</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="padding:1.5rem 2.5rem;background:#fafafa;border-top:1px solid var(--border);">
+          <p class="body muted" style="font-size:.78rem;">Both options include the complete Yango Tech technology stack. The difference is the depth of operational partnership — Option 2 puts Yango Tech's experts directly inside Blibli's operations, driving the KPI improvements that pull the financial model forward.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="sec" style="background:var(--dark);" id="workflow">
+  <div class="w">
+    <div class="slbl-dk fi"><span class="lbl" style="color:rgba(255,255,255,.35);">04 — How It Works</span></div>
+    <div class="fi" style="margin-bottom:3.5rem;">
+      <h2 class="h2" style="color:#fff;max-width:44rem;margin-bottom:1rem;">End-to-end operational flow — from order placed to delivered</h2>
+      <p class="body" style="color:rgba(255,255,255,.45);max-width:46rem;">The Yango Tech stack connects Blibli's existing systems — Odoo ERP, customer app, and courier network — into a single real-time operational loop. Here is how every component fits together.</p>
+    </div>
+
+    <!-- Flow -->
+    <div style="background:#1a1a1a;border-radius:var(--r-card);padding:2.5rem;margin-bottom:3rem;overflow-x:auto;" class="fi" style="transition-delay:.1s;">
+      <div class="lbl" style="color:rgba(255,255,255,.25);margin-bottom:1.75rem;">Order lifecycle — full journey</div>
+      <div class="wf-row">
+        <div class="wf-step"><div class="wf-circle" style="background:#232323;border:2px solid rgba(255,255,255,.08);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div><div class="lbl" style="color:#fff;font-size:.55rem;margin-bottom:.25rem;">Customer</div><div class="body" style="color:rgba(255,255,255,.3);font-size:.6rem;line-height:1.35;">Blibli app or web</div></div>
+        <div class="wf-arr">›</div>
+        <div class="wf-step"><div class="wf-circle" style="background:#232323;border:2px solid rgba(255,255,255,.08);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div><div class="lbl" style="color:#fff;font-size:.55rem;margin-bottom:.25rem;">Odoo ERP</div><div class="body" style="color:rgba(255,255,255,.3);font-size:.6rem;line-height:1.35;">Product catalog</div></div>
+        <div class="wf-arr" style="color:rgba(255,26,26,.5);">›</div>
+        <div class="wf-step"><div class="wf-circle" style="background:rgba(255,26,26,.12);border:2px solid rgba(255,26,26,.3);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg></div><div class="lbl" style="color:var(--red);font-size:.55rem;margin-bottom:.25rem;">Middleware</div><div class="body" style="color:rgba(255,255,255,.3);font-size:.6rem;line-height:1.35;">API bridge</div></div>
+        <div class="wf-arr" style="color:rgba(255,26,26,.5);">›</div>
+        <div class="wf-step"><div class="wf-circle" style="background:rgba(255,26,26,.12);border:2px solid rgba(255,26,26,.3);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div class="lbl" style="color:var(--red);font-size:.55rem;margin-bottom:.25rem;">Yango WMS</div><div class="body" style="color:rgba(255,255,255,.3);font-size:.6rem;line-height:1.35;">Live inventory control</div></div>
+        <div class="wf-arr" style="color:rgba(255,26,26,.5);">›</div>
+        <div class="wf-step"><div class="wf-circle" style="background:rgba(255,26,26,.12);border:2px solid rgba(255,26,26,.3);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="lbl" style="color:var(--red);font-size:.55rem;margin-bottom:.25rem;">Picker App</div><div class="body" style="color:rgba(255,255,255,.3);font-size:.6rem;line-height:1.35;">ML-routed shelf instructions</div></div>
+        <div class="wf-arr">›</div>
+        <div class="wf-step"><div class="wf-circle" style="background:#232323;border:2px solid rgba(255,255,255,.08);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></div><div class="lbl" style="color:#fff;font-size:.55rem;margin-bottom:.25rem;">QR Handoff</div><div class="body" style="color:rgba(255,255,255,.3);font-size:.6rem;line-height:1.35;">Order confirmed to courier</div></div>
+        <div class="wf-arr">›</div>
+        <div class="wf-step"><div class="wf-circle" style="background:#232323;border:2px solid rgba(52,199,89,.25);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#34c759" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="lbl" style="color:#34c759;font-size:.55rem;margin-bottom:.25rem;">Delivered</div><div class="body" style="color:rgba(255,255,255,.3);font-size:.6rem;line-height:1.35;">30–60 min promise kept</div></div>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,.05);margin-top:1.5rem;padding-top:1.2rem;display:flex;gap:2rem;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:.5rem;"><div style="width:22px;height:2px;background:rgba(255,26,26,.45);"></div><span class="body" style="color:rgba(255,255,255,.3);font-size:.62rem;">Yango Tech zone (both options)</span></div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><div style="width:22px;height:2px;background:rgba(255,255,255,.15);"></div><span class="body" style="color:rgba(255,255,255,.3);font-size:.62rem;">Blibli-owned systems</span></div>
+        <div style="margin-left:auto;"><span class="body" style="color:rgba(255,255,255,.25);font-size:.62rem;">Inventory syncs every 3 seconds · Picker routing by ML · QR confirmation at handoff</span></div>
+      </div>
+    </div>
+
+    <!-- Mockups -->
+    <div class="fi" style="margin-bottom:1.75rem;transition-delay:.15s;">
+      <h3 class="h3" style="color:#fff;margin-bottom:.6rem;">Live dashboards — what Blibli's team sees</h3>
+      <p class="body" style="color:rgba(255,255,255,.4);margin-bottom:2rem;">Click each tab to explore the tools driving operations from day one.</p>
+    </div>
+    <div id="mk-nav" style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem;">
+      <button class="mktab on" onclick="showMk('wms')">WMS Order Board</button>
+      <button class="mktab" onclick="showMk('picker')">Picker App</button>
+      <button class="mktab" onclick="showMk('inv')">Inventory</button>
+      <button class="mktab" onclick="showMk('analytics')">WMS Health</button>
+    </div>
+
+    <!-- WMS -->
+    <div id="mk-wms" class="mk fi" style="transition-delay:.2s;">
+      <div class="mk-bar"><div class="mk-dot" style="background:#ff5f57;"></div><div class="mk-dot" style="background:#febc2e;"></div><div class="mk-dot" style="background:#28c840;"></div><span class="mk-ttl">WMS — Live Order Board · Jakarta Darkstore #1</span><span style="margin-left:auto;font-size:.58rem;color:rgba(255,255,255,.2);letter-spacing:.1em;text-transform:uppercase;">Updates every 3 seconds</span></div>
+      <div class="mk-body">
+        <div class="mk-kpi" style="grid-template-columns:repeat(6,1fr);">
+          <div class="mk-ki"><div class="mk-kv">4:12</div><div class="mk-kl">CTE (min)</div></div>
+          <div class="mk-ki"><div class="mk-kv">2:58</div><div class="mk-kl">Prep time</div></div>
+          <div class="mk-ki"><div class="mk-kv">187</div><div class="mk-kl">Orders today</div></div>
+          <div class="mk-ki"><div class="mk-kv" style="color:#34c759;">98.4%</div><div class="mk-kl">On-time rate</div></div>
+          <div class="mk-ki"><div class="mk-kv">6.2</div><div class="mk-kl">Orders/picker/hr</div></div>
+          <div class="mk-ki"><div class="mk-kv" style="color:#ff9500;">3</div><div class="mk-kl">Exceptions</div></div>
+        </div>
+        <div class="mk-slbl">Live order queue</div>
+        <div class="mk-row"><span style="color:rgba(255,255,255,.7);">BLB-001-8821</span><span style="color:rgba(255,255,255,.4);">Andi S.</span><span class="bdg bg">Picking</span><span style="color:rgba(255,255,255,.4);">1:43</span></div>
+        <div class="mk-row"><span style="color:rgba(255,255,255,.7);">BLB-002-8822</span><span style="color:rgba(255,255,255,.4);">Sari W.</span><span class="bdg bo">Awaiting courier</span><span style="color:rgba(255,255,255,.4);">3:10</span></div>
+        <div class="mk-row"><span style="color:rgba(255,255,255,.7);">BLB-003-8823</span><span style="color:rgba(255,255,255,.4);">Not assigned</span><span class="bdg bb">Queue</span><span style="color:rgba(255,255,255,.4);">0:05</span></div>
+        <div class="mk-row"><span style="color:rgba(255,255,255,.7);">BLB-004-8824</span><span style="color:rgba(255,255,255,.4);">Budi R.</span><span class="bdg bg">Picking</span><span style="color:rgba(255,255,255,.4);">0:55</span></div>
+        <div class="mk-row" style="border:none;"><span style="color:rgba(255,255,255,.25);font-size:.65rem;">+ 12 more orders in pipeline...</span></div>
+      </div>
+    </div>
+
+    <!-- Picker -->
+    <div id="mk-picker" class="mk fi" style="max-width:420px;display:none;transition-delay:.2s;">
+      <div class="mk-bar"><div class="mk-dot" style="background:#ff5f57;"></div><div class="mk-dot" style="background:#febc2e;"></div><div class="mk-dot" style="background:#28c840;"></div><span class="mk-ttl">Picker App — Order BLB-001-8821</span></div>
+      <div class="mk-body">
+        <div style="text-align:center;padding:.5rem 0 1.5rem;">
+          <div style="font-size:.58rem;color:rgba(255,255,255,.3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.3rem;">8 items · Optimal route assigned</div>
+          <div style="font-family:var(--fh);font-size:1.8rem;font-weight:900;color:#fff;letter-spacing:calc(1em/50);">4 of 8 picked</div>
+          <div style="font-size:.62rem;color:rgba(255,255,255,.3);margin-top:.2rem;">Est. completion: 58 seconds</div>
+        </div>
+        <div style="background:rgba(255,26,26,.08);border:1px solid rgba(255,26,26,.2);border-radius:1rem;padding:1.1rem;margin-bottom:1rem;display:flex;gap:1rem;align-items:center;">
+          <div style="flex:1;"><div class="lbl" style="color:var(--red);font-size:.55rem;margin-bottom:.3rem;">Next — Shelf B-7</div><div style="font-size:.875rem;font-weight:600;color:#fff;">Indomie Goreng Spesial 85g</div><div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:.15rem;">Qty: 2 pcs · Scan barcode to confirm</div></div>
+          <div style="background:rgba(255,255,255,.07);border-radius:.75rem;padding:.65rem .9rem;text-align:center;flex-shrink:0;"><div class="lbl" style="color:rgba(255,255,255,.35);font-size:.55rem;">Shelf</div><div style="font-family:var(--fh);font-weight:900;font-size:1.5rem;color:#fff;">B-7</div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.3rem;">
+          <div class="mk-row" style="border-color:rgba(255,255,255,.05);"><span style="color:rgba(255,255,255,.4);">A-3 — Aqua 600ml × 1</span><span class="bdg bg">✓</span></div>
+          <div class="mk-row" style="border-color:rgba(255,255,255,.05);"><span style="color:rgba(255,255,255,.4);">A-5 — Teh Botol 350ml × 2</span><span class="bdg bg">✓</span></div>
+          <div class="mk-row" style="border-color:rgba(255,255,255,.05);"><span style="color:rgba(255,255,255,.4);">A-6 — Sprite 390ml × 1</span><span class="bdg bg">✓</span></div>
+          <div class="mk-row" style="border-color:rgba(255,26,26,.15);background:rgba(255,26,26,.04);border-radius:.4rem;padding:.4rem .5rem;"><span style="color:#fff;font-weight:500;">B-7 — Indomie Goreng 85g × 2</span><span class="bdg bo">Current</span></div>
+          <div class="mk-row" style="border:none;"><span style="color:rgba(255,255,255,.25);">B-9, C-2, D-1 — 3 items remaining</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inventory -->
+    <div id="mk-inv" class="mk fi" style="display:none;transition-delay:.2s;">
+      <div class="mk-bar"><div class="mk-dot" style="background:#ff5f57;"></div><div class="mk-dot" style="background:#febc2e;"></div><div class="mk-dot" style="background:#28c840;"></div><span class="mk-ttl">Inventory Control — Automated expiry &amp; stock management</span></div>
+      <div class="mk-body">
+        <div class="mk-kpi" style="grid-template-columns:repeat(4,1fr);">
+          <div class="mk-ki"><div class="mk-kv">4,312</div><div class="mk-kl">Total SKUs</div></div>
+          <div class="mk-ki"><div class="mk-kv" style="color:#34c759;">99.1%</div><div class="mk-kl">Accuracy</div></div>
+          <div class="mk-ki"><div class="mk-kv" style="color:#ff9500;">14</div><div class="mk-kl">Low stock alerts</div></div>
+          <div class="mk-ki"><div class="mk-kv" style="color:#ff3b30;">3</div><div class="mk-kl">Expiry alerts</div></div>
+        </div>
+        <div class="mk-slbl">Action required — stock &amp; expiry alerts</div>
+        <div class="mk-row"><span style="color:rgba(255,255,255,.7);">Aqua 600ml · Shelf A-3</span><span class="bdg bo">8 units left</span><span style="color:rgba(255,255,255,.4);">Reorder: 240 pcs</span></div>
+        <div class="mk-row"><span style="color:rgba(255,255,255,.7);">Pocari Sweat 500ml · Shelf A-8</span><span class="bdg br">2 units left</span><span style="color:rgba(255,255,255,.4);">Reorder urgent</span></div>
+        <div class="mk-row"><span style="color:rgba(255,255,255,.7);">Roti Tawar Sari Roti · Shelf C-4</span><span class="bdg br">Expires tomorrow</span><span style="color:rgba(255,255,255,.4);">Write-off: 12 pcs</span></div>
+        <div class="mk-row"><span style="color:rgba(255,255,255,.7);">Susu Ultra 200ml · Shelf D-2</span><span class="bdg bo">15 units left</span><span style="color:rgba(255,255,255,.4);">Reorder: 96 pcs</span></div>
+        <div class="mk-row" style="border:none;"><span style="color:rgba(255,255,255,.7);">Indomie Goreng 85g · Shelf B-7</span><span class="bdg bg">Stock normal</span><span style="color:rgba(255,255,255,.4);">210 units</span></div>
+      </div>
+    </div>
+
+    <!-- Analytics / WMS Health -->
+    <div id="mk-analytics" class="mk fi" style="display:none;transition-delay:.2s;">
+      <div class="mk-bar"><div class="mk-dot" style="background:#ff5f57;"></div><div class="mk-dot" style="background:#febc2e;"></div><div class="mk-dot" style="background:#28c840;"></div><span class="mk-ttl">WMS Health — All Stores Overview · This Week</span></div>
+      <div class="mk-body">
+        <div class="mk-slbl">CTE trend — Kemang Store #1 (weeks 1–4 post-launch)</div>
+        <div class="mk-row"><span style="color:rgba(255,255,255,.6);">CTE (min)</span><span style="color:rgba(255,255,255,.4);">Week 1</span><span style="color:var(--red);">6:45</span><span style="color:rgba(255,255,255,.4);">→ Week 4</span><span style="color:#34c759;">4:12 (–38%)</span></div>
+        <div class="mk-row"><span style="color:rgba(255,255,255,.6);">Assembly time</span><span style="color:rgba(255,255,255,.4);">Week 1</span><span style="color:var(--red);">5:20</span><span style="color:rgba(255,255,255,.4);">→ Week 4</span><span style="color:#34c759;">2:58 (–44%)</span></div>
+        <div class="mk-row"><span style="color:rgba(255,255,255,.6);">Missing items/order</span><span style="color:rgba(255,255,255,.4);">Week 1</span><span style="color:var(--red);">4.2%</span><span style="color:rgba(255,255,255,.4);">→ Week 4</span><span style="color:#34c759;">0.4% (–90%)</span></div>
+        <div class="mk-row" style="margin-bottom:1rem;"><span style="color:rgba(255,255,255,.6);">Cancellations</span><span style="color:rgba(255,255,255,.4);">Week 1</span><span style="color:var(--red);">8.1%</span><span style="color:rgba(255,255,255,.4);">→ Week 4</span><span style="color:#34c759;">3.2% (–60%)</span></div>
+        <div class="mk-slbl">Orders vs. 200/day target — all active stores</div>
+        <div style="display:flex;flex-direction:column;gap:.6rem;">
+          <div style="display:flex;align-items:center;gap:1rem;"><span style="font-size:.62rem;color:rgba(255,255,255,.5);width:120px;flex-shrink:0;">Store #1 · Kemang</span><div style="flex:1;height:7px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden;"><div style="width:98%;height:100%;background:var(--red);border-radius:4px;"></div></div><span style="font-size:.62rem;color:#fff;width:36px;text-align:right;">196</span><span class="bdg bg" style="flex-shrink:0;margin-left:.5rem;font-size:.55rem;">On target</span></div>
+          <div style="display:flex;align-items:center;gap:1rem;"><span style="font-size:.62rem;color:rgba(255,255,255,.5);width:120px;flex-shrink:0;">Store #2 · Sudirman</span><div style="flex:1;height:7px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden;"><div style="width:87%;height:100%;background:var(--red);border-radius:4px;opacity:.8;"></div></div><span style="font-size:.62rem;color:#fff;width:36px;text-align:right;">174</span><span class="bdg bo" style="flex-shrink:0;margin-left:.5rem;font-size:.55rem;">Ramp</span></div>
+          <div style="display:flex;align-items:center;gap:1rem;"><span style="font-size:.62rem;color:rgba(255,255,255,.5);width:120px;flex-shrink:0;">Store #3 · Gading</span><div style="flex:1;height:7px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden;"><div style="width:63%;height:100%;background:var(--red);border-radius:4px;opacity:.65;"></div></div><span style="font-size:.62rem;color:#fff;width:36px;text-align:right;">126</span><span class="bdg bb" style="flex-shrink:0;margin-left:.5rem;font-size:.55rem;">Week 2</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="sec" style="background:var(--bg);" id="cases">
+  <div class="w">
+    <div class="slbl fi"><span class="lbl muted">05 — Case Studies</span></div>
+    <div class="fi" style="margin-bottom:3.5rem;">
+      <h2 class="h2" style="max-width:44rem;margin-bottom:1rem;">What this looks like in practice — two markets, two scenarios</h2>
+      <p class="body muted" style="max-width:46rem;">Both partners started where Blibli starts today — with no live darkstore tech and a Q-com ambition to prove. The results are directly relevant to Blibli's financial model projections.</p>
+    </div>
+
+    <div class="g2" style="gap:1.5rem;margin-bottom:2rem;align-items:start;">
+      <!-- Uzbekistan -->
+      <div class="cs-card fi" style="transition-delay:0;">
+        <div class="pill pill-r" style="margin-bottom:1.25rem;">Uzbekistan</div>
+        <div class="h4" style="margin-bottom:.5rem;">Asia's #1 Offline Retailer — Darkstore Launch</div>
+        <p class="body muted" style="margin-bottom:1.75rem;">The largest offline retailer in Central Asia launched their darkstore network using Yango Tech's full stack. Starting from zero online operations — comparable to Blibli's current position — they scaled to multi-city operations over 18 months.</p>
+        <div class="g2" style="gap:1rem;margin-bottom:1.5rem;">
+          <div style="background:var(--bg);border-radius:1.25rem;padding:1.5rem;text-align:center;"><div class="cs-stat">450%</div><div class="cs-lbl">Revenue growth over 18 months</div></div>
+          <div style="background:var(--bg);border-radius:1.25rem;padding:1.5rem;text-align:center;"><div class="cs-stat">3.5×</div><div class="cs-lbl">Monthly active customer base growth</div></div>
+          <div style="background:var(--bg);border-radius:1.25rem;padding:1.5rem;text-align:center;"><div class="cs-stat">&gt;60pp</div><div class="cs-lbl">Reduction in missing item level</div></div>
+          <div style="background:var(--bg);border-radius:1.25rem;padding:1.5rem;text-align:center;"><div class="cs-stat">&gt;30%</div><div class="cs-lbl">GMV growth after new client app launch</div></div>
+        </div>
+        <!-- Revenue chart representation -->
+        <div style="background:var(--bg);border-radius:1rem;padding:1.25rem;">
+          <div class="lbl muted" style="margin-bottom:.75rem;">Revenue trajectory since launch (18 months, indexed)</div>
+          <div class="rev-chart" id="rev-chart">
+            <div class="rev-bar dim" style="height:8%;"></div>
+            <div class="rev-bar dim" style="height:12%;"></div>
+            <div class="rev-bar dim" style="height:18%;"></div>
+            <div class="rev-bar dim" style="height:22%;"></div>
+            <div class="rev-bar" style="height:30%;"></div>
+            <div class="rev-bar" style="height:36%;"></div>
+            <div class="rev-bar" style="height:42%;"></div>
+            <div class="rev-bar" style="height:48%;"></div>
+            <div class="rev-bar" style="height:52%;"></div>
+            <div class="rev-bar" style="height:58%;"></div>
+            <div class="rev-bar" style="height:62%;"></div>
+            <div class="rev-bar" style="height:66%;"></div>
+            <div class="rev-bar" style="height:72%;"></div>
+            <div class="rev-bar" style="height:78%;"></div>
+            <div class="rev-bar" style="height:88%;"></div>
+            <div class="rev-bar" style="height:92%;"></div>
+            <div class="rev-bar" style="height:97%;"></div>
+            <div class="rev-bar" style="height:100%;"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:.5rem;"><span class="body muted" style="font-size:.62rem;">Month 1</span><span class="body muted" style="font-size:.62rem;">Month 18 (5.5× revenue)</span></div>
+          <div class="body muted" style="font-size:.72rem;margin-top:.5rem;font-style:italic;">*Absolute numbers NDA-protected. Revenue grew 5.5× in 18 months.</div>
+        </div>
+        <div style="margin-top:1.25rem;background:#fff5f5;border-radius:1rem;padding:1rem;">
+          <div class="lbl" style="color:var(--red);margin-bottom:.35rem;font-size:.62rem;">Relevance to Blibli</div>
+          <p class="body muted" style="font-size:.78rem;">This retailer's Month 1–6 mirrors Blibli's plan exactly: 1 pilot store, manual processes, no prior darkstore tech. The 450% revenue growth and the 18-month trajectory confirm that Blibli's own financial model targets — 200 orders/day by Month 12, break-even by Month 18 — are not ambitious projections. They are repeatable outcomes.</p>
+        </div>
+      </div>
+
+      <!-- Saudi Arabia -->
+      <div class="cs-card fi" style="transition-delay:.1s;">
+        <div class="pill pill-r" style="margin-bottom:1.25rem;">Saudi Arabia</div>
+        <div class="h4" style="margin-bottom:.5rem;">Top Saudi E-Grocer — 18-City WMS Deployment</div>
+        <p class="body muted" style="margin-bottom:1.75rem;">One of Saudi Arabia's leading e-grocery operators deployed Yango Tech's WMS and Picker App across their full network of 18 cities. The operational improvements were measurable within weeks of deployment.</p>
+        <div style="display:flex;flex-direction:column;gap:0;margin-bottom:1.5rem;">
+          <div style="background:var(--bg);border-radius:1.25rem;padding:1.5rem;margin-bottom:1rem;">
+            <div class="lbl muted" style="margin-bottom:.75rem;">What the WMS + Picker delivered</div>
+            <div style="display:flex;flex-direction:column;gap:.5rem;">
+              <div style="display:flex;gap:.75rem;align-items:flex-start;"><div style="width:20px;height:20px;border-radius:50%;background:rgba(255,26,26,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.05rem;"><svg viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="body muted" style="font-size:.8rem;">Real-time inventory visibility across all 18 cities, eliminating the overselling problem that was driving cancellations</div></div>
+              <div style="display:flex;gap:.75rem;align-items:flex-start;"><div style="width:20px;height:20px;border-radius:50%;background:rgba(255,26,26,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.05rem;"><svg viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="body muted" style="font-size:.8rem;">Smart in-store routing via Picker App cut average preparation time significantly across the network</div></div>
+              <div style="display:flex;gap:.75rem;align-items:flex-start;"><div style="width:20px;height:20px;border-radius:50%;background:rgba(255,26,26,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.05rem;"><svg viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="body muted" style="font-size:.8rem;">Automated expiry date control reduced write-offs across all locations</div></div>
+              <div style="display:flex;gap:.75rem;align-items:flex-start;"><div style="width:20px;height:20px;border-radius:50%;background:rgba(255,26,26,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.05rem;"><svg viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="body muted" style="font-size:.8rem;">Business dashboards enabled data-driven management of operations across the network from a single view</div></div>
+            </div>
+          </div>
+          <div style="background:var(--bg);border-radius:1.25rem;padding:1.5rem;">
+            <div class="lbl muted" style="margin-bottom:.75rem;">Network snapshot (at deployment)</div>
+            <div class="g2" style="gap:.75rem;">
+              <div style="text-align:center;"><div style="font-family:var(--fh);font-weight:900;font-size:1.8rem;color:var(--red);">18</div><div class="lbl muted" style="font-size:.6rem;">Cities covered</div></div>
+              <div style="text-align:center;"><div style="font-family:var(--fh);font-weight:900;font-size:1.8rem;color:var(--red);">&lt;16 wks</div><div class="lbl muted" style="font-size:.6rem;">Contract to live ops</div></div>
+            </div>
+          </div>
+        </div>
+        <div style="background:#fff5f5;border-radius:1rem;padding:1rem;">
+          <div class="lbl" style="color:var(--red);margin-bottom:.35rem;font-size:.62rem;">Relevance to Blibli</div>
+          <p class="body muted" style="font-size:.78rem;">The Saudi deployment confirms the 16-week contract-to-live timeline is real and repeatable. Blibli's Q3 2026 target is achievable from the date of contract. The operational improvements also confirm that the WMS impact on write-offs and cancellations is consistent across diverse markets — not a single-market case.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Yandex Lavka credential -->
+    <div style="background:var(--dark);border-radius:var(--r-card);padding:2.5rem;" class="fi" style="transition-delay:.2s;">
+      <div class="g2" style="gap:3rem;align-items:center;">
+        <div>
+          <div class="lbl" style="color:var(--red);margin-bottom:.75rem;">The foundation of everything</div>
+          <div class="h3" style="color:#fff;margin-bottom:1rem;">Yandex Lavka — the $1.9B darkstore business that built this tech</div>
+          <p class="body" style="color:rgba(255,255,255,.5);">Every component in Yango Tech's platform was first stress-tested at Yandex Lavka scale — 550+ stores, 450,000 daily orders, EBITDA positive. The platform Blibli receives is not prototype software. It is the same stack that achieved 10–30 seconds per item pick time at 7,000+ SKU stores, 95%+ on-shelf availability, and ~0% out-of-stock orders at scale.</p>
+        </div>
+        <div class="g2" style="gap:1rem;">
+          <div style="background:rgba(255,255,255,.06);border-radius:1.25rem;padding:1.5rem;text-align:center;"><div style="font-family:var(--fh);font-weight:900;font-size:1.8rem;color:var(--red);">&gt;550</div><div class="lbl" style="color:rgba(255,255,255,.4);font-size:.6rem;margin-top:.4rem;">Own darkstores</div></div>
+          <div style="background:rgba(255,255,255,.06);border-radius:1.25rem;padding:1.5rem;text-align:center;"><div style="font-family:var(--fh);font-weight:900;font-size:1.8rem;color:var(--red);">450K</div><div class="lbl" style="color:rgba(255,255,255,.4);font-size:.6rem;margin-top:.4rem;">Orders/day managed</div></div>
+          <div style="background:rgba(255,255,255,.06);border-radius:1.25rem;padding:1.5rem;text-align:center;"><div style="font-family:var(--fh);font-weight:900;font-size:1.8rem;color:var(--red);">$1.9B</div><div class="lbl" style="color:rgba(255,255,255,.4);font-size:.6rem;margin-top:.4rem;">Business value</div></div>
+          <div style="background:rgba(255,255,255,.06);border-radius:1.25rem;padding:1.5rem;text-align:center;"><div style="font-family:var(--fh);font-weight:900;font-size:var(--red);color:var(--red);font-size:1.3rem;">EBITDA+</div><div class="lbl" style="color:rgba(255,255,255,.4);font-size:.6rem;margin-top:.4rem;">Positive at scale</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT STEPS -->
+<section class="sec" style="background:#fff;" id="next">
+  <div class="w">
+    <div class="slbl fi"><span class="lbl muted">06 — How Yango Tech Can Help Blibli</span></div>
+    <div class="g2" style="gap:5rem;align-items:start;">
+      <div class="fi">
+        <h2 class="h2" style="margin-bottom:1.25rem;">Four steps to get<br>this moving</h2>
+        <p class="body muted" style="margin-bottom:2.25rem;">The Q3 launch window is firm. Here is the fastest path from where Blibli is today to a live, operational darkstore — with the right technology and expertise in place from day one.</p>
+        <div style="display:flex;flex-direction:column;gap:0;">
+          <div class="tli">
+            <div class="tln">A</div>
+            <div>
+              <div class="h4" style="margin-bottom:.4rem;">Confirm engagement model and structure</div>
+              <p class="body muted">Align on Option 1 (Technology Enablement) or Option 2 (Full-Stack Enablement), and determine the commercial structure — subscription, CapEx, or a hybrid split. This determines the proposal scope and contract timeline.</p>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tln">B</div>
+            <div>
+              <div class="h4" style="margin-bottom:.4rem;">Share the P&L model for proposal calibration</div>
+              <p class="body muted">The financial model from Blibli's planning team will allow Yango Tech to return a calibrated commercial proposal — with CapEx and SaaS scenarios modelled against the Y1–Y5 EBITDA targets — within 5 business days.</p>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tln">C</div>
+            <div>
+              <div class="h4" style="margin-bottom:.4rem;">Technical API session — Blibli engineering × Yango Tech</div>
+              <p class="body muted">A 2-hour working session to confirm the Odoo middleware scope and courier handoff architecture. Resolves the last technical unknown before commercial sign-off and sets the implementation timeline.</p>
+            </div>
+          </div>
+          <div class="tli" style="border-bottom:none;">
+            <div class="tln">D</div>
+            <div>
+              <div class="h4" style="margin-bottom:.4rem;">Jakarta on-site meeting — late March / early April</div>
+              <p class="body muted">The Yango Tech team will be on-ground in Jakarta. This is the opportunity for an in-person leadership review, an on-site darkstore assessment, and alignment on the final partnership structure before the Q3 window closes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fi" style="transition-delay:.12s;">
+        <div style="background:var(--bg);border-radius:var(--r-card);padding:2.75rem;">
+          <div class="h4" style="margin-bottom:.4rem;">Request the formal proposal</div>
+          <p class="body muted" style="margin-bottom:2rem;font-size:.8rem;">Share your preference and context — Yango Tech will return a fully structured commercial document with CapEx/SaaS scenarios, deployment cost breakdown, and timeline within 5 business days.</p>
+          <div style="display:flex;flex-direction:column;gap:1.1rem;">
+            <input class="inp" type="text" placeholder="Contact name">
+            <input class="inp" type="email" placeholder="Business email">
+            <div style="display:flex;gap:.75rem;background:#fff;border-radius:var(--r-pill);padding:.35rem;width:fit-content;" id="opt-sel">
+              <button class="tog-btn" onclick="selOpt(0)" id="s0">Option 01 — $50K</button>
+              <button class="tog-btn on" onclick="selOpt(1)" id="s1">Option 02 — $100K</button>
+            </div>
+            <textarea class="inp" placeholder="Additional context — timeline constraints, CapEx vs OpEx preference, internal team size, or questions for the proposal"></textarea>
+            <a href="mailto:info@yango-team.com" class="btn btn-red" style="width:100%;justify-content:center;padding:1.2rem 2rem;">Send to Yango Tech</a>
+          </div>
+          <div style="margin-top:1.5rem;display:flex;align-items:center;gap:1rem;padding-top:1.25rem;border-top:1px solid var(--border);">
+            <div>
+              <div class="lbl muted" style="font-size:.6rem;margin-bottom:.2rem;">Email directly</div>
+              <a href="mailto:info@yango-team.com" style="font-size:.75rem;font-weight:500;letter-spacing:.06em;color:var(--red);">info@yango-team.com</a>
+            </div>
+            <div style="margin-left:1.5rem;">
+              <div class="lbl muted" style="font-size:.6rem;margin-bottom:.2rem;">Website</div>
+              <a href="https://tech.yango.com" style="font-size:.75rem;font-weight:500;letter-spacing:.06em;color:var(--muted);">tech.yango.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="w">
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:2rem;">
+      <a href="/"><img src="https://avatars.mds.yandex.net/get-lpc/14837328/21641dca-3288-4eeb-8d99-81f8cb31a763/orig" alt="Yango Tech" style="filter:invert(1);height:25px;width:auto;"></a>
+      <div style="display:flex;gap:3rem;flex-wrap:wrap;">
+        <div>
+          <p class="lbl" style="opacity:.3;margin-bottom:.9rem;">Solutions</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:.5rem;">
+            <li><a href="#" class="body" style="color:rgba(255,255,255,.4);">Darkstore WMS</a></li>
+            <li><a href="#" class="body" style="color:rgba(255,255,255,.4);">Picker App</a></li>
+            <li><a href="#" class="body" style="color:rgba(255,255,255,.4);">Operational Consulting</a></li>
+            <li><a href="#" class="body" style="color:rgba(255,255,255,.4);">Launch &amp; Implementation</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="lbl" style="opacity:.3;margin-bottom:.9rem;">Contact</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:.5rem;">
+            <li><a href="mailto:info@yango-team.com" class="body" style="color:rgba(255,255,255,.4);">info@yango-team.com</a></li>
+            <li><a href="https://tech.yango.com" class="body" style="color:rgba(255,255,255,.4);">tech.yango.com</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span class="lbl" style="opacity:.3;">&copy; 2026 Yango Tech Retail</span>
+      <span class="lbl" style="opacity:.3;">Confidential · Prepared for Blibli · March 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 70));
+
+// Fade in observer
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); }), { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fi').forEach(el => io.observe(el));
+
+// Mockup tabs
+const mks = ['wms', 'picker', 'inv', 'analytics'];
+function showMk(n) {
+  mks.forEach(m => document.getElementById('mk-' + m).style.display = m === n ? 'block' : 'none');
+  document.querySelectorAll('#mk-nav .mktab').forEach((t, i) => t.classList.toggle('on', mks[i] === n));
+}
+
+// Option selector
+function selOpt(i) {
+  document.getElementById('s0').classList.toggle('on', i === 0);
+  document.getElementById('s1').classList.toggle('on', i === 1);
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
+</body>
+</html>
