@@ -56,14 +56,14 @@ img{max-width:100%;height:auto;display:block;}
 .red{color:var(--red);}
 
 /* Nav */
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.2rem var(--pad);transition:background var(--t);}
-.nav::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.65) 0%,transparent 100%);pointer-events:none;z-index:-1;transition:var(--t);}
-.nav.scrolled::before{background:rgba(16,16,16,.97);backdrop-filter:blur(14px);}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.2rem var(--pad);background:#fff;border-bottom:1px solid var(--border);transition:background var(--t),border-color var(--t);}
+.nav::before{display:none;}
+.nav.scrolled{background:#fff;border-bottom-color:var(--border);}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:var(--max);margin:0 auto;}
-.nav-logo img{height:27px;width:auto;filter:invert(1);}
+.nav-logo img{height:27px;width:auto;filter:brightness(0);}
 .nav-links{display:flex;align-items:center;gap:.25rem;list-style:none;}
-.nav-link{padding:.65rem .85rem;font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);transition:var(--t);}
-.nav-link:hover{color:#fff;}
+.nav-link{padding:.65rem .85rem;font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text);transition:var(--t);}
+.nav-link:hover{color:var(--red);}
 
 /* Buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;padding:.9rem 1.9rem;border:none;border-radius:var(--r-btn);font-family:var(--fb);font-weight:500;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:var(--t);white-space:nowrap;}
@@ -73,7 +73,7 @@ img{max-width:100%;height:auto;display:block;}
 .btn-gw{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.25);}.btn-gw:hover{border-color:#fff;}
 
 /* Hero */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;background:#000;color:var(--on-dark);overflow:hidden;padding-top:6rem;}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;background:#000;color:var(--on-dark);overflow:hidden;padding-top:7rem;}
 .hero-bg{position:absolute;inset:0;z-index:0;
   background:radial-gradient(ellipse at 12% 55%,rgba(255,26,26,.18) 0%,transparent 55%),
   radial-gradient(ellipse at 80% 20%,rgba(255,26,26,.09) 0%,transparent 50%),
@@ -274,7 +274,7 @@ textarea.inp{resize:vertical;min-height:7rem;}
         <div style="width:1px;background:rgba(255,255,255,.1);"></div>
         <div>
           <div class="lbl" style="color:rgba(255,255,255,.35);margin-bottom:.25rem;">Y5 Vision</div>
-          <div style="font-family:var(--fh);font-weight:900;font-size:1.2rem;color:#fff;letter-spacing:calc(1em/50);">526 orders/store/day · 18% EBITDA</div>
+          <div style="font-family:var(--fh);font-weight:900;font-size:1.2rem;color:#fff;letter-spacing:calc(1em/50);">~700 orders/store/day · 18% EBITDA</div>
         </div>
         <div style="width:1px;background:rgba(255,255,255,.1);"></div>
         <div>
@@ -311,14 +311,14 @@ textarea.inp{resize:vertical;min-height:7rem;}
     <div class="slbl fi"><span class="lbl muted">01 — Why Yango Tech</span></div>
     <div class="g2" style="gap:5rem;align-items:start;margin-bottom:4rem;">
       <div class="fi">
-        <h2 class="h2" style="margin-bottom:1.5rem;">We didn't just build<br>darkstore software —<br>we built a <span style="color:var(--red);">$2B business</span><br>with it</h2>
+        <h2 class="h2" style="margin-bottom:1.5rem;">We didn't just build<br>darkstore software —<br>we built a <span style="color:var(--red);">$4B business</span><br>with it</h2>
         <p class="body muted" style="margin-bottom:1.5rem;">Yango Tech's darkstore platform was born from running Yandex Lavka — one of the world's most operationally efficient quick-commerce businesses. Every feature, every KPI threshold, every SOP template comes from running 550+ live stores and managing 450,000 orders a day at EBITDA positive. This is not vendor software. It is the same stack, offered to partners who want to skip 5 years of operational learning.</p>
         <p class="body muted">For Blibli, this means the technology embedded in the platform already knows what good looks like — and is calibrated to get your stores there from week one.</p>
       </div>
       <div class="fi" style="transition-delay:.12s;">
         <div class="g2" style="gap:1rem;">
           <div style="background:var(--bg);border-radius:var(--r-card);padding:2rem;border-top:3px solid var(--red);">
-            <div class="sn">600+</div>
+            <div class="sn">500+</div>
             <div class="sl">Active darkstores on the platform</div>
           </div>
           <div style="background:var(--bg);border-radius:var(--r-card);padding:2rem;border-top:3px solid transparent;">
@@ -326,7 +326,7 @@ textarea.inp{resize:vertical;min-height:7rem;}
             <div class="sl">Daily deliveries managed</div>
           </div>
           <div style="background:var(--bg);border-radius:var(--r-card);padding:2rem;border-top:3px solid transparent;">
-            <div class="sn">$2B</div>
+            <div class="sn">$4B</div>
             <div class="sl">Profitable darkstore business built</div>
           </div>
           <div style="background:var(--bg);border-radius:var(--r-card);padding:2rem;border-top:3px solid transparent;">
@@ -464,7 +464,7 @@ textarea.inp{resize:vertical;min-height:7rem;}
         <div class="pl-accent" style="background:#16a34a;"></div>
         <div class="pl-year">Year 4–5</div>
         <div class="pl-val" style="color:#16a34a;">13 Stores</div>
-        <div class="lbl muted" style="font-size:.6rem;margin-bottom:.75rem;">415–526 OPD · 13 stores</div>
+        <div class="lbl muted" style="font-size:.6rem;margin-bottom:.75rem;">415 OPD (Y4) → ~700 OPD (Y5)</div>
         <div class="pl-bar" style="background:#dcfce7;"><div style="width:75%;height:100%;border-radius:2px;background:#16a34a;"></div></div>
         <div class="pl-metric"><span class="pl-metric-label">GMV Y4</span><span class="pl-metric-val">Rp 466.8B<span class="pl-usd">≈ $29.2M USD</span></span></div>
         <div class="pl-metric"><span class="pl-metric-label">EBITDA Y4</span><span class="pl-metric-val" style="color:#16a34a;">+14%</span></div>
@@ -547,7 +547,7 @@ textarea.inp{resize:vertical;min-height:7rem;}
           <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">Deployed operational experts (2–3 weeks per visit)</div><div class="body muted" style="font-size:.8rem;">Senior Yango Tech operations leads embedded on-site during the most critical operational windows — store launch, first scale-up, and multi-store rollout phases.</div></div></div>
           <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">Geo-analytics for store location selection</div><div class="body muted" style="font-size:.8rem;">Yango Tech's geo-analytics capability (isochrone mapping, audience density analysis) helps Blibli select the highest-GMV catchment zones for stores 2–5 and beyond — directly impacting GMV per location.</div></div></div>
           <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">Dedicated Partner Happiness Manager</div><div class="body muted" style="font-size:.8rem;">Single point of contact across technology and operations. Weekly KPI reviews during ramp, monthly at steady state. Accountable for Blibli's performance against the financial model.</div></div></div>
-          <div class="chk-row" style="border-bottom:none;"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">Continuous improvement loop &amp; quarterly reviews</div><div class="body muted" style="font-size:.8rem;">Post-visit recommendations benchmarked against Yango Tech's 600+ store global dataset. Operational gaps identified and closed before they impact the P&L.</div></div></div>
+          <div class="chk-row" style="border-bottom:none;"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">Continuous improvement loop &amp; quarterly reviews</div><div class="body muted" style="font-size:.8rem;">Post-visit recommendations benchmarked against Yango Tech's 500+ store global dataset. Operational gaps identified and closed before they impact the P&L.</div></div></div>
         </div>
         <!-- Path to profitability note -->
         <div style="margin-top:2rem;padding:1.5rem;background:#fff5f5;border-radius:1rem;border:1px solid rgba(255,26,26,.12);">
@@ -874,12 +874,12 @@ textarea.inp{resize:vertical;min-height:7rem;}
               <button class="tog-btn on" onclick="selOpt(1)" id="s1">Option B — $100K</button>
             </div>
             <textarea class="inp" placeholder="Additional context — timeline constraints, CapEx vs OpEx preference, internal team size, or questions for the proposal"></textarea>
-            <a href="mailto:info@yango-team.com" class="btn btn-red" style="width:100%;justify-content:center;padding:1.2rem 2rem;">Send to Yango Tech</a>
+            <a href="mailto:ramya@yango.com" class="btn btn-red" style="width:100%;justify-content:center;padding:1.2rem 2rem;">Send to Yango Tech</a>
           </div>
           <div style="margin-top:1.5rem;display:flex;align-items:center;gap:1rem;padding-top:1.25rem;border-top:1px solid var(--border);">
             <div>
               <div class="lbl muted" style="font-size:.6rem;margin-bottom:.2rem;">Email directly</div>
-              <a href="mailto:info@yango-team.com" style="font-size:.75rem;font-weight:500;letter-spacing:.06em;color:var(--red);">info@yango-team.com</a>
+              <a href="mailto:ramya@yango.com" style="font-size:.75rem;font-weight:500;letter-spacing:.06em;color:var(--red);">ramya@yango.com</a>
             </div>
             <div style="margin-left:1.5rem;">
               <div class="lbl muted" style="font-size:.6rem;margin-bottom:.2rem;">Website</div>
@@ -910,7 +910,7 @@ textarea.inp{resize:vertical;min-height:7rem;}
         <div>
           <p class="lbl" style="opacity:.3;margin-bottom:.9rem;">Contact</p>
           <ul style="list-style:none;display:flex;flex-direction:column;gap:.5rem;">
-            <li><a href="mailto:info@yango-team.com" class="body" style="color:rgba(255,255,255,.4);">info@yango-team.com</a></li>
+            <li><a href="mailto:ramya@yango.com" class="body" style="color:rgba(255,255,255,.4);">ramya@yango.com</a></li>
             <li><a href="https://tech.yango.com" class="body" style="color:rgba(255,255,255,.4);">tech.yango.com</a></li>
           </ul>
         </div>
