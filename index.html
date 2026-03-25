@@ -196,8 +196,11 @@ textarea.inp{resize:vertical;min-height:7rem;}
 .pl-year{font-family:var(--fh);font-weight:900;font-size:.875rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem;}
 .pl-val{font-family:var(--fh);font-weight:900;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1;letter-spacing:calc(1em/50);margin-bottom:.35rem;}
 .pl-bar{height:4px;border-radius:2px;margin:1rem 0 .75rem;}
-.pl-metric{display:flex;justify-content:space-between;font-size:.7rem;letter-spacing:.04em;padding:.35rem 0;border-bottom:1px solid var(--bg);}
+.pl-metric{display:flex;justify-content:space-between;align-items:flex-start;padding:.6rem 0;border-bottom:1px solid #ebebeb;gap:.5rem;}
 .pl-metric:last-child{border-bottom:none;}
+.pl-metric-label{font-family:var(--fb);font-weight:400;font-size:.72rem;letter-spacing:.04em;color:var(--muted);padding-top:.15rem;flex-shrink:0;}
+.pl-metric-val{font-family:var(--fb);font-weight:700;font-size:.92rem;color:var(--text);letter-spacing:.01em;text-align:right;line-height:1.2;}
+.pl-usd{display:block;font-size:.62rem;font-weight:400;color:var(--muted);margin-top:.1rem;letter-spacing:.03em;}
 .pl-accent{position:absolute;top:0;left:0;width:4px;height:100%;background:var(--red);}
 
 /* Case study card */
@@ -276,7 +279,7 @@ textarea.inp{resize:vertical;min-height:7rem;}
         <div style="width:1px;background:rgba(255,255,255,.1);"></div>
         <div>
           <div class="lbl" style="color:rgba(255,255,255,.35);margin-bottom:.25rem;">Total Y5 GMV</div>
-          <div style="font-family:var(--fh);font-weight:900;font-size:1.2rem;color:var(--red);letter-spacing:calc(1em/50);">Rp 624B+</div>
+          <div style="font-family:var(--fh);font-weight:900;font-size:1.2rem;color:var(--red);letter-spacing:calc(1em/50);">Rp 624B+ <span style="font-size:.7rem;font-weight:400;font-family:var(--fb);color:rgba(255,255,255,.45);">≈ $39M USD</span></div>
         </div>
       </div>
       <div style="display:flex;gap:1rem;flex-wrap:wrap;" class="fi" style="transition-delay:.28s;">
@@ -421,12 +424,12 @@ textarea.inp{resize:vertical;min-height:7rem;}
         <div class="pl-accent" style="background:rgba(255,26,26,.25);"></div>
         <div class="pl-year">Year 1</div>
         <div class="pl-val" style="color:var(--text);">5 Stores</div>
-        <div class="lbl muted" style="font-size:.6rem;margin-bottom:.75rem;">200 orders/store/day target</div>
+        <div class="lbl muted" style="font-size:.6rem;margin-bottom:.75rem;">200 OPD (H1) → scaling to 400 OPD (H2)</div>
         <div class="pl-bar" style="background:#fee2e2;"><div style="width:46%;height:100%;border-radius:2px;background:#fca5a5;"></div></div>
-        <div class="pl-metric"><span class="body muted">GMV</span><span class="lbl">Rp 55.5B</span></div>
-        <div class="pl-metric"><span class="body muted">AoV</span><span class="lbl">Rp 180K</span></div>
-        <div class="pl-metric"><span class="body muted">EBITDA</span><span class="lbl" style="color:#ef4444;">–46%</span></div>
-        <div class="pl-metric"><span class="body muted">FCF</span><span class="lbl" style="color:#ef4444;">–Rp 25.9B</span></div>
+        <div class="pl-metric"><span class="pl-metric-label">GMV</span><span class="pl-metric-val">Rp 55.5B<span class="pl-usd">≈ $3.5M USD</span></span></div>
+        <div class="pl-metric"><span class="pl-metric-label">AoV</span><span class="pl-metric-val">Rp 180K<span class="pl-usd">≈ $11 USD</span></span></div>
+        <div class="pl-metric"><span class="pl-metric-label">EBITDA</span><span class="pl-metric-val" style="color:#ef4444;">–46%</span></div>
+        <div class="pl-metric"><span class="pl-metric-label">FCF</span><span class="pl-metric-val" style="color:#ef4444;">–Rp 25.9B<span class="pl-usd">≈ –$1.6M USD</span></span></div>
         <div style="margin-top:1rem;background:#fff5f5;border-radius:.75rem;padding:.75rem;font-size:.7rem;color:var(--muted);">Investment phase — building the foundation. Hitting 200 orders/day per store in Y1 is the critical milestone that sets the 18-month break-even trajectory.</div>
       </div>
       <!-- Y2 -->
@@ -435,12 +438,12 @@ textarea.inp{resize:vertical;min-height:7rem;}
         <div style="position:absolute;top:1rem;right:1rem;"><span class="pill pill-r" style="font-size:.58rem;">18-month break-even target</span></div>
         <div class="pl-year">Year 2 · Month 18</div>
         <div class="pl-val" style="color:var(--red);">8 Stores</div>
-        <div class="lbl muted" style="font-size:.6rem;margin-bottom:.75rem;">246 orders/store/day avg</div>
+        <div class="lbl muted" style="font-size:.6rem;margin-bottom:.75rem;">400 OPD baseline · 8 stores</div>
         <div class="pl-bar" style="background:#fee2e2;"><div style="width:12%;height:100%;border-radius:2px;background:#fca5a5;"></div></div>
-        <div class="pl-metric"><span class="body muted">GMV</span><span class="lbl">Rp 146.9B</span></div>
-        <div class="pl-metric"><span class="body muted">AoV</span><span class="lbl">Rp 189K</span></div>
-        <div class="pl-metric"><span class="body muted">EBITDA</span><span class="lbl" style="color:#f97316;">–12% → 0%</span></div>
-        <div class="pl-metric"><span class="body muted">FCF</span><span class="lbl" style="color:#ef4444;">–Rp 43.7B</span></div>
+        <div class="pl-metric"><span class="pl-metric-label">GMV</span><span class="pl-metric-val">Rp 146.9B<span class="pl-usd">≈ $9.2M USD</span></span></div>
+        <div class="pl-metric"><span class="pl-metric-label">AoV</span><span class="pl-metric-val">Rp 189K<span class="pl-usd">≈ $12 USD</span></span></div>
+        <div class="pl-metric"><span class="pl-metric-label">EBITDA</span><span class="pl-metric-val" style="color:#f97316;">–12% → 0%</span></div>
+        <div class="pl-metric"><span class="pl-metric-label">FCF</span><span class="pl-metric-val" style="color:#ef4444;">–Rp 43.7B<span class="pl-usd">≈ –$2.7M USD</span></span></div>
         <div style="margin-top:1rem;background:#fff7f0;border-radius:.75rem;padding:.75rem;font-size:.7rem;color:var(--muted);">Break-even targeted at Month 18. With Yango Tech's operational layer compressing losses, EBITDA moves from –12% toward 0% through the year.</div>
       </div>
       <!-- Y3 -->
@@ -448,12 +451,12 @@ textarea.inp{resize:vertical;min-height:7rem;}
         <div class="pl-accent" style="background:#16a34a;"></div>
         <div class="pl-year">Year 3</div>
         <div class="pl-val" style="color:#16a34a;">12 Stores</div>
-        <div class="lbl muted" style="font-size:.6rem;margin-bottom:.75rem;">290 orders/store/day avg</div>
+        <div class="lbl muted" style="font-size:.6rem;margin-bottom:.75rem;">400 OPD baseline · 12 stores</div>
         <div class="pl-bar" style="background:#dcfce7;"><div style="width:7%;height:100%;border-radius:2px;background:#4ade80;"></div></div>
-        <div class="pl-metric"><span class="body muted">GMV</span><span class="lbl">Rp 284B</span></div>
-        <div class="pl-metric"><span class="body muted">AoV</span><span class="lbl">Rp 201K</span></div>
-        <div class="pl-metric"><span class="body muted">EBITDA</span><span class="lbl" style="color:#16a34a;">+7%</span></div>
-        <div class="pl-metric"><span class="body muted">FCF</span><span class="lbl" style="color:#f97316;">–Rp 26.9B</span></div>
+        <div class="pl-metric"><span class="pl-metric-label">GMV</span><span class="pl-metric-val">Rp 284B<span class="pl-usd">≈ $17.8M USD</span></span></div>
+        <div class="pl-metric"><span class="pl-metric-label">AoV</span><span class="pl-metric-val">Rp 201K<span class="pl-usd">≈ $12.6 USD</span></span></div>
+        <div class="pl-metric"><span class="pl-metric-label">EBITDA</span><span class="pl-metric-val" style="color:#16a34a;">+7%</span></div>
+        <div class="pl-metric"><span class="pl-metric-label">FCF</span><span class="pl-metric-val" style="color:#f97316;">–Rp 26.9B<span class="pl-usd">≈ –$1.7M USD</span></span></div>
         <div style="margin-top:1rem;background:#f0fdf4;border-radius:.75rem;padding:.75rem;font-size:.7rem;color:var(--muted);">Past break-even and building. Full network at 12 stores. Platform for accelerating to FCF positive in Y4.</div>
       </div>
       <!-- Y4 -->
@@ -461,23 +464,27 @@ textarea.inp{resize:vertical;min-height:7rem;}
         <div class="pl-accent" style="background:#16a34a;"></div>
         <div class="pl-year">Year 4–5</div>
         <div class="pl-val" style="color:#16a34a;">13 Stores</div>
-        <div class="lbl muted" style="font-size:.6rem;margin-bottom:.75rem;">415–526 orders/store/day</div>
+        <div class="lbl muted" style="font-size:.6rem;margin-bottom:.75rem;">415–526 OPD · 13 stores</div>
         <div class="pl-bar" style="background:#dcfce7;"><div style="width:75%;height:100%;border-radius:2px;background:#16a34a;"></div></div>
-        <div class="pl-metric"><span class="body muted">GMV Y4</span><span class="lbl">Rp 466.8B</span></div>
-        <div class="pl-metric"><span class="body muted">EBITDA Y4</span><span class="lbl" style="color:#16a34a;">+14%</span></div>
-        <div class="pl-metric"><span class="body muted">FCF Y4</span><span class="lbl" style="color:#16a34a;">+Rp 27.7B</span></div>
-        <div class="pl-metric"><span class="body muted">EBITDA Y5</span><span class="lbl" style="color:#16a34a;">+18%</span></div>
+        <div class="pl-metric"><span class="pl-metric-label">GMV Y4</span><span class="pl-metric-val">Rp 466.8B<span class="pl-usd">≈ $29.2M USD</span></span></div>
+        <div class="pl-metric"><span class="pl-metric-label">EBITDA Y4</span><span class="pl-metric-val" style="color:#16a34a;">+14%</span></div>
+        <div class="pl-metric"><span class="pl-metric-label">FCF Y4</span><span class="pl-metric-val" style="color:#16a34a;">+Rp 27.7B<span class="pl-usd">≈ +$1.7M USD</span></span></div>
+        <div class="pl-metric"><span class="pl-metric-label">EBITDA Y5</span><span class="pl-metric-val" style="color:#16a34a;">+18%</span></div>
         <div style="margin-top:1rem;background:#f0fdf4;border-radius:.75rem;padding:.75rem;font-size:.7rem;color:var(--muted);">Free cash flow positive. Full unit economics validated. Ready for network expansion.</div>
       </div>
     </div>
 
-    <!-- Callout: how YT accelerates this -->
+    <!-- Exchange rate note -->
+    <div style="margin-top:1rem;display:flex;align-items:center;gap:.5rem;" class="fi">
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#7A7A7A" stroke-width="1.3"/><path d="M8 7v4M8 5.5v.5" stroke="#7A7A7A" stroke-width="1.3" stroke-linecap="round"/></svg>
+      <span class="body muted" style="font-size:.68rem;">USD values are approximate, converted at Rp 16,000 = $1 USD. Source: Blibli financial model projections.</span>
+    </div>
     <div class="cbod fi" style="transition-delay:.2s;">
       <div class="lbl" style="color:var(--red);margin-bottom:.75rem;">How Yango Tech accelerates every stage of this curve</div>
       <div class="g3" style="gap:2rem;">
         <div>
           <div class="lbl" style="color:rgba(255,255,255,.5);margin-bottom:.5rem;">Y1 — Hitting 200 orders/day, every store</div>
-          <p class="body" style="color:rgba(255,255,255,.55);">The WMS and Picker App reduce assembly time by 50% from Week 1, meaning stores reach 200 orders/day faster and with fewer cancellations. Higher early order frequency directly improves the customer retention rate — the single biggest driver of the Y2 GMV needed to hit the 18-month break-even.</p>
+          <p class="body" style="color:rgba(255,255,255,.55);">The WMS and Picker App reduce assembly time by 50% from Week 1, giving stores the throughput capacity to hit 200 OPD in H1 and ramp to 400 OPD by H2. Higher early order quality — fewer cancellations, near-zero missing items — improves retention rates, which drives the H2 volume acceleration needed for the 18-month break-even.</p>
         </div>
         <div>
           <div class="lbl" style="color:rgba(255,255,255,.5);margin-bottom:.5rem;">Months 12–18 — Closing in on break-even</div>
@@ -505,7 +512,7 @@ textarea.inp{resize:vertical;min-height:7rem;}
 
       <!-- OPTION 1 -->
       <div class="opt-card fi" style="transition-delay:0;">
-        <span class="opt-tag" style="background:var(--mid);font-size:.62rem;">Option 01</span>
+        <span class="opt-tag" style="background:var(--mid);font-size:.62rem;">Option A</span>
         <div class="pill pill-r" style="margin-bottom:1.25rem;">Technology Enablement</div>
         <div class="opt-price"><sup>$</sup>50,000</div>
         <div class="lbl muted" style="margin-bottom:1.75rem;">Per year · 1-year commitment</div>
@@ -513,27 +520,27 @@ textarea.inp{resize:vertical;min-height:7rem;}
         <div style="display:flex;flex-direction:column;gap:0;">
           <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">Full WMS platform — 12 months</div><div class="body muted" style="font-size:.8rem;">Live inventory (3-sec updates), order management, analytics, and reporting across all stores. Scales without additional cost as stores 2–5 go live.</div></div></div>
           <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">Picker App with ML routing</div><div class="body muted" style="font-size:.8rem;">Reduces assembly time by up to 50%, eliminates mis-picks, and enables KPI tracking per picker from day one.</div></div></div>
-          <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">ERP / Odoo integration (middleware build)</div><div class="body muted" style="font-size:.8rem;">Yango Tech builds the API bridge between Blibli's Odoo instance and the WMS. One-time setup, maintained by Yango Tech.</div></div></div>
+          <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">ERP / Odoo integration support</div><div class="body muted" style="font-size:.8rem;">Yango Tech provides integration specifications, API documentation, and technical guidance. The middleware bridge between Blibli's Odoo instance and the WMS is built by Blibli's team.</div></div></div>
           <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">Remote onboarding — 40+ hour training program</div><div class="body muted" style="font-size:.8rem;">Structured training for Blibli's operations team: picking best practices, shift management, inventory handling, courier handoff.</div></div></div>
           <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">100+ operational templates &amp; playbooks</div><div class="body muted" style="font-size:.8rem;">Dark store layout plan, equipment checklist, category structure templates, shift planning instruments — adapted for Indonesia.</div></div></div>
-          <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">Technical support (Severity A ≤1hr / B ≤4hrs)</div><div class="body muted" style="font-size:.8rem;">24/7 technical support with guaranteed SLAs. Critical business impact resolved within 1 hour.</div></div></div>
-          <div class="chk-row" style="border-bottom:none;"><div class="cx-ico"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 3l6 6M9 3l-6 6" stroke="#aaa" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><div class="body muted" style="font-weight:500;">On-site operational consulting visits</div><div class="body muted" style="font-size:.8rem;">Available as part of Option 2.</div></div></div>
+          <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">Technical support with guaranteed SLAs</div><div class="body muted" style="font-size:.8rem;">Severity A (critical) resolved within 1 hour, Severity B (moderate) within 4 hours, Severity C (minor) within 8 hours. Support via Yango Tech's Channel Partner network.</div></div></div>
+          <div class="chk-row" style="border-bottom:none;"><div class="cx-ico"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 3l6 6M9 3l-6 6" stroke="#aaa" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><div class="body muted" style="font-weight:500;">On-site operational consulting visits</div><div class="body muted" style="font-size:.8rem;">Available as part of Option B.</div></div></div>
         </div>
         <!-- Path to profitability note -->
         <div style="margin-top:2rem;padding:1.5rem;background:var(--bg);border-radius:1rem;">
           <div class="lbl" style="color:var(--red);margin-bottom:.5rem;">Path to Blibli's targets</div>
-          <p class="body muted" style="font-size:.8rem;">Option 1 gives Blibli the technology foundation to reach 200 orders/day in Y1 and 246 in Y2. The operational improvements compound through the WMS's live KPI tracking — but the pace toward the 18-month break-even depends on Blibli's internal team applying the playbooks consistently. Break-even at Month 18 is achievable with strong internal ops execution.</p>
+          <p class="body muted" style="font-size:.8rem;">Option A gives Blibli the technology foundation to ramp from 200 OPD in H1 to 400 OPD in H2, then sustain 400 OPD as the baseline from Y2 onwards. The operational improvements compound through the WMS's live KPI tracking — but the pace toward the 18-month break-even depends on Blibli's internal team applying the playbooks consistently.</p>
         </div>
-        <a href="#next" class="btn btn-ghost" style="margin-top:1.75rem;width:100%;justify-content:center;">Explore Option 01</a>
+        <a href="#next" class="btn btn-ghost" style="margin-top:1.75rem;width:100%;justify-content:center;">Explore Option A</a>
       </div>
 
       <!-- OPTION 2 -->
       <div class="opt-card sel fi" style="transition-delay:.1s;">
-        <span class="opt-tag" style="font-size:.62rem;">Option 02 · Recommended</span>
+        <span class="opt-tag" style="font-size:.62rem;">Option B · Recommended</span>
         <div class="pill pill-r" style="margin-bottom:1.25rem;">Full-Stack Enablement</div>
         <div class="opt-price"><sup>$</sup>100,000</div>
         <div class="lbl muted" style="margin-bottom:1.75rem;">Per year · includes on-ground deployment</div>
-        <div class="h4" style="margin-bottom:1rem;">Everything in Option 01, plus:</div>
+        <div class="h4" style="margin-bottom:1rem;">Everything in Option A, plus:</div>
         <div style="display:flex;flex-direction:column;gap:0;">
           <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">On-site operational visits — Jakarta darkstores</div><div class="body muted" style="font-size:.8rem;">Yango Tech operations experts physically present at Blibli's stores. Critical inefficiencies identified in the first session that typically take operator teams months to discover.</div></div></div>
           <div class="chk-row"><div class="chk-ico"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#FF1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="body" style="font-weight:500;">Warehouse SOP &amp; process design</div><div class="body muted" style="font-size:.8rem;">Full standard operating procedures: warehouse layout, zone design, receiving, expiry control, substitution flows, shift handover protocols.</div></div></div>
@@ -545,9 +552,9 @@ textarea.inp{resize:vertical;min-height:7rem;}
         <!-- Path to profitability note -->
         <div style="margin-top:2rem;padding:1.5rem;background:#fff5f5;border-radius:1rem;border:1px solid rgba(255,26,26,.12);">
           <div class="lbl" style="color:var(--red);margin-bottom:.5rem;">Path to Blibli's targets — accelerated</div>
-          <p class="body muted" style="font-size:.8rem;">Option 2's on-site operational layer is the most direct route to the 18-month break-even target. Store visit patterns from comparable launches show CTE reductions of 35–44% within 4 weeks, cancellations dropping by 60%, and missing-item rates falling from ~4% to under 0.4%. Each improvement feeds directly into gross margin — compressing the loss curve and making Month 18 EBITDA break-even a managed outcome rather than an aspiration.</p>
+          <p class="body muted" style="font-size:.8rem;">Option B's on-site operational layer is the most direct route to the 18-month break-even target. Store visit patterns from comparable launches show CTE reductions of 35–44% within 4 weeks, cancellations dropping by 60%, and missing-item rates falling from ~4% to under 0.4%. Each improvement feeds directly into gross margin — compressing the loss curve and making Month 18 EBITDA break-even a managed outcome rather than an aspiration.</p>
         </div>
-        <a href="#next" class="btn btn-red" style="margin-top:1.75rem;width:100%;justify-content:center;">Explore Option 02</a>
+        <a href="#next" class="btn btn-red" style="margin-top:1.75rem;width:100%;justify-content:center;">Explore Option B</a>
       </div>
     </div>
 
@@ -558,16 +565,16 @@ textarea.inp{resize:vertical;min-height:7rem;}
           <table class="ctbl">
             <thead><tr>
               <th style="width:48%;">What Blibli gets</th>
-              <th style="width:26%;text-align:center;">Option 01<br><span style="font-size:.6rem;color:var(--muted);">Technology Enablement · $50K</span></th>
-              <th style="width:26%;text-align:center;background:#fff5f5;">Option 02<br><span style="font-size:.6rem;color:var(--red);">Full-Stack · $100K</span></th>
+              <th style="width:26%;text-align:center;">Option A<br><span style="font-size:.6rem;color:var(--muted);">Technology Enablement · $50K</span></th>
+              <th style="width:26%;text-align:center;background:#fff5f5;">Option B<br><span style="font-size:.6rem;color:var(--red);">Full-Stack · $100K</span></th>
             </tr></thead>
             <tbody>
               <tr><td class="body" style="font-weight:500;">WMS — live inventory (3-sec updates)</td><td style="text-align:center;">✓</td><td style="text-align:center;background:#fffafa;">✓</td></tr>
               <tr><td class="body" style="font-weight:500;">Picker App with ML routing</td><td style="text-align:center;">✓</td><td style="text-align:center;background:#fffafa;">✓</td></tr>
-              <tr><td class="body" style="font-weight:500;">ERP / Odoo middleware integration</td><td style="text-align:center;">✓</td><td style="text-align:center;background:#fffafa;">✓</td></tr>
+              <tr><td class="body" style="font-weight:500;">ERP / Odoo integration (client-built, YT-guided)</td><td style="text-align:center;">✓</td><td style="text-align:center;background:#fffafa;">✓</td></tr>
               <tr><td class="body" style="font-weight:500;">40+ hr remote training program</td><td style="text-align:center;">✓</td><td style="text-align:center;background:#fffafa;">✓</td></tr>
               <tr><td class="body" style="font-weight:500;">100+ operational templates (Indonesia)</td><td style="text-align:center;">✓</td><td style="text-align:center;background:#fffafa;">✓</td></tr>
-              <tr><td class="body" style="font-weight:500;">24/7 technical support (SLA guaranteed)</td><td style="text-align:center;">✓</td><td style="text-align:center;background:#fffafa;">✓</td></tr>
+              <tr><td class="body" style="font-weight:500;">Technical support with guaranteed SLAs</td><td style="text-align:center;">✓</td><td style="text-align:center;background:#fffafa;">✓</td></tr>
               <tr><td class="body" style="font-weight:500;">On-site operational visits — Jakarta</td><td style="text-align:center;color:var(--muted);">—</td><td style="text-align:center;background:#fffafa;" class="hl">✓ Included</td></tr>
               <tr><td class="body" style="font-weight:500;">Warehouse SOP &amp; process design</td><td style="text-align:center;color:var(--muted);">—</td><td style="text-align:center;background:#fffafa;" class="hl">✓ Included</td></tr>
               <tr><td class="body" style="font-weight:500;">Deployed operations experts (2–3 wks)</td><td style="text-align:center;color:var(--muted);">—</td><td style="text-align:center;background:#fffafa;" class="hl">✓ Included</td></tr>
@@ -578,7 +585,7 @@ textarea.inp{resize:vertical;min-height:7rem;}
           </table>
         </div>
         <div style="padding:1.5rem 2.5rem;background:#fafafa;border-top:1px solid var(--border);">
-          <p class="body muted" style="font-size:.78rem;">Both options include the complete Yango Tech technology stack. The difference is the depth of operational partnership — Option 2 puts Yango Tech's experts directly inside Blibli's operations, driving the KPI improvements that pull the financial model forward.</p>
+          <p class="body muted" style="font-size:.78rem;">Both options include the complete Yango Tech technology stack. The difference is the depth of operational partnership — Option B puts Yango Tech's experts directly inside Blibli's operations, driving the KPI improvements that pull the financial model forward.</p>
         </div>
       </div>
     </div>
@@ -829,7 +836,7 @@ textarea.inp{resize:vertical;min-height:7rem;}
             <div class="tln">A</div>
             <div>
               <div class="h4" style="margin-bottom:.4rem;">Confirm engagement model and structure</div>
-              <p class="body muted">Align on Option 1 (Technology Enablement) or Option 2 (Full-Stack Enablement), and determine the commercial structure — subscription, CapEx, or a hybrid split. This determines the proposal scope and contract timeline.</p>
+              <p class="body muted">Align on Option A (Technology Enablement) or Option B (Full-Stack Enablement), and determine the commercial structure — subscription, CapEx, or a hybrid split. This determines the proposal scope and contract timeline.</p>
             </div>
           </div>
           <div class="tli">
@@ -843,7 +850,7 @@ textarea.inp{resize:vertical;min-height:7rem;}
             <div class="tln">C</div>
             <div>
               <div class="h4" style="margin-bottom:.4rem;">Technical API session — Blibli engineering × Yango Tech</div>
-              <p class="body muted">A 2-hour working session to confirm the Odoo middleware scope and courier handoff architecture. Resolves the last technical unknown before commercial sign-off and sets the implementation timeline.</p>
+              <p class="body muted">A 2-hour working session to align on the Odoo integration specifications and courier handoff architecture. Yango Tech provides the API documentation; Blibli's tech team scopes the middleware build on their side. Removes the last technical unknown before commercial sign-off.</p>
             </div>
           </div>
           <div class="tli" style="border-bottom:none;">
@@ -863,8 +870,8 @@ textarea.inp{resize:vertical;min-height:7rem;}
             <input class="inp" type="text" placeholder="Contact name">
             <input class="inp" type="email" placeholder="Business email">
             <div style="display:flex;gap:.75rem;background:#fff;border-radius:var(--r-pill);padding:.35rem;width:fit-content;" id="opt-sel">
-              <button class="tog-btn" onclick="selOpt(0)" id="s0">Option 01 — $50K</button>
-              <button class="tog-btn on" onclick="selOpt(1)" id="s1">Option 02 — $100K</button>
+              <button class="tog-btn" onclick="selOpt(0)" id="s0">Option A — $50K</button>
+              <button class="tog-btn on" onclick="selOpt(1)" id="s1">Option B — $100K</button>
             </div>
             <textarea class="inp" placeholder="Additional context — timeline constraints, CapEx vs OpEx preference, internal team size, or questions for the proposal"></textarea>
             <a href="mailto:info@yango-team.com" class="btn btn-red" style="width:100%;justify-content:center;padding:1.2rem 2rem;">Send to Yango Tech</a>
